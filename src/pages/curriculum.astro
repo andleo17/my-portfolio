@@ -1,0 +1,194 @@
+---
+import data from '../../data.json';
+
+import Language from '../components/curriculum/language.astro';
+import WorkExperience from '../components/curriculum/work-experience.astro';
+import Education from '../components/curriculum/education.astro';
+import Course from '../components/curriculum/course.astro';
+
+import atIcon from '../assets/icons/at.svg?raw';
+import mapPinIcon from '../assets/icons/map-pin.svg?raw';
+import profile from '../assets/profile.jpg';
+import { Image } from 'astro:assets';
+import ToggleThemeButton from '../components/ToggleThemeButton.astro';
+import Download from '../components/curriculum/download.astro';
+---
+
+<html lang='es'>
+	<head>
+		<meta charset='utf-8' />
+		<link rel='icon' type='image/svg+xml' href='/favicon.svg' />
+		<meta name='viewport' content='width=device-width' />
+		<meta name='generator' content={Astro.generator} />
+		<title>Curriculum de Andrés</title>
+		<script src='../ts/darkMode.ts'></script>
+	</head>
+	<body
+		class='bg-slate-100 dark:bg-gray-800 text-gray-800 dark:text-white print:text-black [print-color-adjust:exact] print:text-xs'
+	>
+		<div class='bg-gray-300 dark:bg-gray-900 print:hidden'>
+			<header
+				class='flex container mx-auto px-2 py-4 lg:px-0 items-center justify-between'
+			>
+				<a href='/' class='font-bold text-xl'>Página inicial</a>
+				<div class='flex gap-2'>
+					<ToggleThemeButton />
+					<Download />
+				</div>
+			</header>
+		</div>
+		<main class='flex container mx-auto px-2 gap-4 lg:px-0 print:p-0'>
+			<div class='flex-grow space-y-6 py-4 print:p-4'>
+				<article>
+					<h1
+						class='uppercase font-bold text-lg border-b mb-2 border-b-gray-400 dark:border-b-gray-200 print:text-sm'
+					>
+						Sobre mí
+					</h1>
+					<p>
+						Desarrollador web full-stack con experiencia en la creación de APIs
+						web con GraphQL e interfaces de usuario con React. Me encanta
+						aprender cosas nuevas y aplicarlas en mi vida diaria. Amante de la
+						tecnología y las nuevas experiencias.
+					</p>
+				</article>
+				<div class='columns-1 lg:columns-2 print:columns-1 space-y-6'>
+					<article>
+						<h1
+							class='uppercase font-bold text-lg border-b mb-2 border-b-gray-400 dark:border-b-gray-200 print:text-sm'
+						>
+							Experiencia laboral
+						</h1>
+						<div class='space-y-4'>
+							{
+								data.work_experience.map((w) => (
+									<WorkExperience workExperience={w} />
+								))
+							}
+						</div>
+					</article>
+					<article>
+						<h1
+							class='uppercase font-bold text-lg border-b border-b-gray-400 dark:border-b-gray-200 mb-2 print:text-sm'
+						>
+							Formación académica
+						</h1>
+						<div class='space-y-4'>
+							{data.education.map((e) => <Education education={e} />)}
+						</div>
+					</article>
+					<article>
+						<h1
+							class='uppercase font-bold text-lg border-b mb-2 border-b-gray-400 dark:border-b-gray-200 print:text-sm'
+						>
+							Cursos
+						</h1>
+						<div class='space-y-4'>
+							{data.courses.map((c) => <Course course={c} />)}
+						</div>
+					</article>
+					<article>
+						<h1
+							class='uppercase font-bold text-lg border-b mb-2 border-b-gray-400 dark:border-b-gray-200 print:text-sm'
+						>
+							Conocimientos
+						</h1>
+						<div class='space-y-2'>
+							{
+								Object.entries(data.skills).map(([k, v]) => (
+									<div class=''>
+										<b class='mb-2 block'>{k}</b>
+										<div class='flex gap-2 lg:gap-4 flex-wrap'>
+											{v
+												.sort((s1, s2) => s2.level - s1.level)
+												.map((s) => (
+													<span class='border border-gray-800 dark:border-gray-200 rounded px-2'>
+														{s.name}
+													</span>
+												))}
+										</div>
+									</div>
+								))
+							}
+						</div>
+					</article>
+				</div>
+			</div>
+			<aside
+				class='bg-blue-300 dark:bg-blue-800 print:bg-blue-300 p-4 space-y-6 min-h-screen'
+			>
+				<div class='text-center'>
+					<picture
+						class='flex justify-center w-60 h-60 print:w-44 print:h-44 rounded-full overflow-hidden'
+					>
+						<Image
+							src={profile}
+							alt='Profile image'
+							class='object-cover object-center w-full'
+						/>
+					</picture>
+					<b class='flex flex-col mt-4 text-xl print:text-sm'>
+						<span>{data.information.name}</span>
+						<span>{data.information.lastname}</span>
+					</b>
+					<span class='my-2 inline-block text-sm print:text-xs' contenteditable
+						>Desarrollador web</span
+					>
+					<div class='flex gap-4 justify-center print:text-xs'>
+						<a
+							href={`mailto:${data.information.email}`}
+							class='flex gap-1 items-center print:[&>*]:h-4 print:[&>*]:w-4'
+							title={data.information.email}
+						>
+							<Fragment set:html={atIcon} />
+							 E-mail
+						</a>
+						<div
+							class='flex gap-1 items-center print:[&>*]:h-4 print:[&>*]:w-4'
+						>
+							<Fragment set:html={mapPinIcon} />
+							{data.information.city}, {data.information.country}
+						</div>
+					</div>
+					<div class='flex gap-3 justify-center mt-2'>
+						{
+							data.socials.map((s) => (
+								<a
+									href={s.url}
+									title={s.name}
+									class='[&>*]:w-5 [&>*]:h-5 [&>*[fill=none]]:fill-none dark:[&>*[fill=none]]:fill-none [&>*]:fill-black [&>*[fill=none]]:stroke-black dark:[&>*]:fill-white dark:[&>*[fill=none]]:stroke-white'
+								>
+									<Fragment
+										set:html={import(`../assets/icons/${s.icon}.svg?raw`).then(
+											(i) => i.default
+										)}
+									/>
+								</a>
+							))
+						}
+					</div>
+				</div>
+				<article>
+					<h2
+						class='font-bold border-b mb-2 border-b-gray-600 dark:border-b-gray-200'
+					>
+						Idiomas
+					</h2>
+					<ul class='space-y-4 text-sm'>
+						{data.languages.map((l) => <Language language={l} />)}
+					</ul>
+				</article>
+				<article>
+					<h2
+						class='font-bold border-b mb-2 border-b-gray-600 dark:border-b-gray-200'
+					>
+						Aptitudes
+					</h2>
+					<ul>
+						{data.competences.map((c) => <li>{c}</li>)}
+					</ul>
+				</article>
+			</aside>
+		</main>
+	</body>
+</html>

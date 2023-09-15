@@ -1,0 +1,18 @@
+---
+import type { WorkExperience } from '../types';
+
+interface Props {
+  data: WorkExperience;
+}
+
+const { data } = Astro.props;
+---
+
+<article>
+  <b>{data.institution}</b>
+  <span>{data.title}</span>
+  <small>
+    ({data.start_date} - {data.end_date})
+  </small>
+  <p>{data.description}</p>
+</article>

@@ -1,0 +1,24 @@
+---
+import NavItem from './NavItem.astro';
+import ToggleThemeButton from './ToggleThemeButton.astro';
+---
+
+<header class='bg-gray-300 dark:bg-black py-4 lg:py-12 px-4 text-sm md:text-lg'>
+	<div class='container mx-auto flex items-center justify-between'>
+		<span class='text-lg md:text-2xl font-bold select-none'>andleo</span>
+		<nav class='hidden md:block'>
+			<ul class='flex space-x-4 font-bold'>
+				<NavItem href='#skills' label='Habilidades' />
+				<NavItem href='#projects' label='Proyectos' />
+			</ul>
+		</nav>
+		<div class='flex gap-2 items-center'>
+			<ToggleThemeButton />
+			<a
+				href='/curriculum'
+				class='text-xs md:text-sm h-full font-bold rounded border border-black dark:border-white p-2 bg-white dark:bg-black hover:bg-gray-200 dark:text-white dark:hover:bg-gray-800'
+				>Ver curriculum</a
+			>
+		</div>
+	</div>
+</header>

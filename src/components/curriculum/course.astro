@@ -1,0 +1,41 @@
+---
+import type { Course } from '../../types';
+import dayjs from 'dayjs';
+import 'dayjs/locale/es-mx';
+
+interface Props {
+	course: Course;
+}
+
+const { course } = Astro.props;
+
+dayjs.locale('es-mx');
+---
+
+<div>
+	<div>
+		<b>{course.name}</b>
+		{
+			course.certification_url && (
+				<a href={course.certification_url} class='ml-1' target='_blank'>
+					(Ver certificado)
+				</a>
+			)
+		}
+	</div>
+	<div class='capitalize space-x-2 text-sm italic print:text-xs'>
+		<span>
+			{dayjs(course.start_date).format('MMMM, YYYY')}
+		</span>
+		<span>-</span>
+		<span>
+			{
+				course.end_date ? (
+					dayjs(course.end_date).format('MMMM, YYYY')
+				) : (
+					<b>actualmente</b>
+				)
+			}
+		</span>
+	</div>
+</div>

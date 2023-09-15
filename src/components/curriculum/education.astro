@@ -1,0 +1,33 @@
+---
+import type { Education } from '../../types';
+import dayjs from 'dayjs';
+import 'dayjs/locale/es-mx';
+
+interface Props {
+	education: Education;
+}
+
+const { education } = Astro.props;
+
+dayjs.locale('es-mx');
+---
+
+<div class='flex flex-col'>
+	<b>{education.goal}</b>
+	<span>{education.institution} | {education.city}, {education.country}</span>
+	<div class='capitalize space-x-2 text-sm italic print:text-xs'>
+		<span>
+			{dayjs(education.start_date).format('MMMM, YYYY')}
+		</span>
+		<span>-</span>
+		<span>
+			{
+				education.end_date ? (
+					dayjs(education.end_date).format('MMMM, YYYY')
+				) : (
+					<b>actualmente</b>
+				)
+			}
+		</span>
+	</div>
+</div>

@@ -1,0 +1,36 @@
+---
+import type { Language } from '../../types';
+
+interface Props {
+	language: Language;
+}
+
+const levels = {
+	native: 1,
+	A: 0.25,
+	B: 0.5,
+	C: 0.75,
+};
+
+const { language } = Astro.props;
+
+const formatedLevel = (
+	language.level !== 'native' ? language.level[0] : 'native'
+) as keyof typeof levels;
+const level = levels[formatedLevel];
+---
+
+<li class='print:text-xs'>
+	<div class='flex justify-between items-center mb-2'>
+		<span class='font-bold'>{language.name}</span>
+		<span>{language.level !== 'native' ? language.level : 'Nativo'}</span>
+	</div>
+	<div class='rounded overflow-hidden w-full h-2 flex'>
+		<div
+			class='h-full bg-gray-700 dark:bg-gray-500'
+			style={`width: ${level * 100}%`}
+		>
+		</div>
+		<div class='h-full bg-white flex-grow'></div>
+	</div>
+</li>

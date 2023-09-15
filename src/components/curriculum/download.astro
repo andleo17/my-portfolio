@@ -1,0 +1,44 @@
+<button
+	id='download-cv'
+	type='button'
+	class='flex items-center gap-2 h-full text-sm font-bold rounded border border-gray-600 p-2 bg-gray-300 hover:bg-gray-200 dark:bg-gray-800 dark:hover:bg-gray-700'
+>
+	<svg
+		fill='none'
+		viewBox='0 0 24 24'
+		stroke-width='1.5'
+		stroke='currentColor'
+		class='w-4 h-4'
+	>
+		<path
+			stroke-linecap='round'
+			stroke-linejoin='round'
+			d='M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5M16.5 12L12 16.5m0 0L7.5 12m4.5 4.5V3'
+		></path>
+	</svg>
+	<span>Descargar</span>
+</button>
+<div
+	id='backdrop'
+	class='hidden absolute top-0 left-0 w-screen h-screen bg-gray-900 opacity-80 print:hidden'
+>
+</div>
+
+<script>
+	const $downloadButton =
+		document.querySelector<HTMLButtonElement>('#download-cv')!;
+
+	const $backdrop = document.querySelector<HTMLDivElement>('#backdrop')!;
+
+	$downloadButton.addEventListener('click', async () => {
+		const hasDarkMode = document.documentElement.classList.contains('dark');
+
+		if (hasDarkMode) document.documentElement.classList.remove('dark');
+
+		$backdrop.classList.remove('hidden');
+		window.print();
+		$backdrop.classList.add('hidden');
+
+		if (hasDarkMode) document.documentElement.classList.add('dark');
+	});
+</script>

@@ -37,7 +37,98 @@ import Download from '../components/curriculum/download.astro';
 				</div>
 			</header>
 		</div>
-		<main class='flex container mx-auto px-2 gap-4 lg:px-0 print:p-0'>
+		<main
+			class='flex flex-col print:flex-row print:min-h-screen lg:flex-row container mx-auto px-2 gap-4 lg:px-0 print:p-0'
+		>
+			<aside
+				class='bg-blue-300 dark:bg-blue-800 print:bg-blue-300 p-4 space-y-6 min-h-fit lg:min-h-screen'
+			>
+				<div
+					class='text-center md:text-left lg:text-center flex flex-col md:flex-row lg:flex-col gap-4 items-center'
+				>
+					<div class='w-auto md:w-1/3 lg:w-auto'>
+						<picture
+							class='flex justify-center w-60 h-60 print:w-44 print:h-44 rounded-full overflow-hidden'
+						>
+							<Image
+								src={profile}
+								alt='Profile image'
+								class='object-cover w-full'
+							/>
+						</picture>
+					</div>
+					<div class='w-full'>
+						<b class='mt-4 text-xl print:text-sm'>
+							{data.information.name}
+							{' '}
+							{data.information.lastname}
+						</b>
+						<div class='space-y-3'>
+							<span class='text-sm print:text-xs' contenteditable
+								>Desarrollador web</span
+							>
+							<div
+								class='flex flex-col print:flex-row lg:flex-row gap-3 justify-center'
+							>
+								{
+									data.socials.map((s) => (
+										<a
+											href={s.url}
+											title={s.name}
+											class='flex gap-2 items-center print:[&>*]:w-4 print:[&>*]:h-4 [&>*]:w-6 [&>*]:h-6 [&>*[fill=none]]:fill-none dark:[&>*[fill=none]]:fill-none [&>*]:fill-black [&>*[fill=none]]:stroke-black dark:[&>*]:fill-white dark:[&>*[fill=none]]:stroke-white'
+										>
+											<Fragment
+												set:html={import(
+													`../assets/icons/${s.icon}.svg?raw`
+												).then((i) => i.default)}
+											/>
+											<span class='inline lg:hidden print:hidden'>
+												{s.name}
+											</span>
+										</a>
+									))
+								}
+							</div>
+							<div class='flex flex-col gap-2 justify-center print:text-xs'>
+								<a
+									href={`mailto:${data.information.email}`}
+									class='flex gap-2 items-center [&>*]:h-6 [&>*]:w-6 print:[&>*]:h-4 print:[&>*]:w-4'
+									title={data.information.email}
+								>
+									<Fragment set:html={atIcon} />
+									{data.information.email}
+								</a>
+								<div
+									class='flex gap-2 items-center [&>*]:h-6 [&>*]:w-6 print:[&>*]:h-4 print:[&>*]:w-4'
+								>
+									<Fragment set:html={mapPinIcon} />
+									{data.information.city}, {data.information.country}
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<article>
+					<h2
+						class='font-bold border-b mb-2 border-b-gray-600 dark:border-b-gray-200'
+					>
+						Idiomas
+					</h2>
+					<ul class='space-y-4 text-sm'>
+						{data.languages.map((l) => <Language language={l} />)}
+					</ul>
+				</article>
+				<article>
+					<h2
+						class='font-bold border-b mb-2 border-b-gray-600 dark:border-b-gray-200'
+					>
+						Aptitudes
+					</h2>
+					<ul>
+						{data.competences.map((c) => <li>{c}</li>)}
+					</ul>
+				</article>
+			</aside>
 			<div class='flex-grow space-y-6 py-4 print:p-4'>
 				<article>
 					<h1
@@ -114,81 +205,6 @@ import Download from '../components/curriculum/download.astro';
 					</article>
 				</div>
 			</div>
-			<aside
-				class='bg-blue-300 dark:bg-blue-800 print:bg-blue-300 p-4 space-y-6 min-h-screen'
-			>
-				<div class='text-center'>
-					<picture
-						class='flex justify-center w-60 h-60 print:w-44 print:h-44 rounded-full overflow-hidden'
-					>
-						<Image
-							src={profile}
-							alt='Profile image'
-							class='object-cover object-center w-full'
-						/>
-					</picture>
-					<b class='flex flex-col mt-4 text-xl print:text-sm'>
-						<span>{data.information.name}</span>
-						<span>{data.information.lastname}</span>
-					</b>
-					<span class='my-2 inline-block text-sm print:text-xs' contenteditable
-						>Desarrollador web</span
-					>
-					<div class='flex gap-4 justify-center print:text-xs'>
-						<a
-							href={`mailto:${data.information.email}`}
-							class='flex gap-1 items-center print:[&>*]:h-4 print:[&>*]:w-4'
-							title={data.information.email}
-						>
-							<Fragment set:html={atIcon} />
-							 E-mail
-						</a>
-						<div
-							class='flex gap-1 items-center print:[&>*]:h-4 print:[&>*]:w-4'
-						>
-							<Fragment set:html={mapPinIcon} />
-							{data.information.city}, {data.information.country}
-						</div>
-					</div>
-					<div class='flex gap-3 justify-center mt-2'>
-						{
-							data.socials.map((s) => (
-								<a
-									href={s.url}
-									title={s.name}
-									class='[&>*]:w-5 [&>*]:h-5 [&>*[fill=none]]:fill-none dark:[&>*[fill=none]]:fill-none [&>*]:fill-black [&>*[fill=none]]:stroke-black dark:[&>*]:fill-white dark:[&>*[fill=none]]:stroke-white'
-								>
-									<Fragment
-										set:html={import(`../assets/icons/${s.icon}.svg?raw`).then(
-											(i) => i.default
-										)}
-									/>
-								</a>
-							))
-						}
-					</div>
-				</div>
-				<article>
-					<h2
-						class='font-bold border-b mb-2 border-b-gray-600 dark:border-b-gray-200'
-					>
-						Idiomas
-					</h2>
-					<ul class='space-y-4 text-sm'>
-						{data.languages.map((l) => <Language language={l} />)}
-					</ul>
-				</article>
-				<article>
-					<h2
-						class='font-bold border-b mb-2 border-b-gray-600 dark:border-b-gray-200'
-					>
-						Aptitudes
-					</h2>
-					<ul>
-						{data.competences.map((c) => <li>{c}</li>)}
-					</ul>
-				</article>
-			</aside>
 		</main>
 	</body>
 </html>

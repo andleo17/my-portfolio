@@ -22,7 +22,7 @@ if (data.thumbnails) {
 ---
 
 <div class='px-0 py-1 w-full lg:p-1 lg:w-1/2 xl:w-1/3'>
-	<div class='border-2 border-gray-300 dark:border-gray-700 rounded-lg'>
+	<div class='border-2 border-gray-300 dark:border-gray-700 rounded-lg h-full'>
 		<div class='p-4'>
 			<div class='flex justify-between'>
 				<h3 class='font-bold text-lg'>{data.name}</h3>
@@ -49,10 +49,10 @@ if (data.thumbnails) {
 					}
 				</div>
 			</div>
-			<div class='flex gap-2 my-2 select-none'>
+			<div class='flex gap-2 my-2 select-none flex-wrap'>
 				{
 					data.technologies.map((t) => (
-						<small class='rounded-xl px-2 text-xs bg-gray-200 dark:bg-slate-600 dark:text-white'>
+						<small class='rounded-xl px-2 text-xs bg-gray-300 dark:bg-slate-600 dark:text-white'>
 							{t}
 						</small>
 					))

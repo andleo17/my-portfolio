@@ -136,5 +136,44 @@
       "title": "Desarrollador de software"
     }
   ],
-  "projects": []
+  "projects": [
+    {
+      "name": "DotClass",
+      "description": "Aplicación web que simula una plataforma de cursos virtuales.",
+      "code_url": "https://github.com/andleo17/dotClass",
+      "technologies": ["PHP", "PostgreSQL", "CSS", "JavaScript"]
+    },
+    {
+      "name": "GraphQL API de restaurante",
+      "description": "Desarrollé junto a mis compañeros de clase una Web API con GraphQL para un restaurante que contaba con las operaciones básicas de mantenimiento de un sistema (CRUD) y lógica propia del negocio.",
+      "code_url": "https://github.com/andleo17/sistema-mia-casa",
+      "technologies": ["NodeJS", "GraphQL", "PostresSQL", "Prisma"]
+    },
+    {
+      "name": "Gestor de notas académicas",
+      "description": "Aplicación web para gestionar las calificaciones académicas de un estudiante. Permite ingresar una estructura de calificaciones con sus respectivos pesos correspodiente al sílabo del curso y también calcula las calificaciones restantes en base a un resultado esperado.",
+      "code_url": "https://github.com/andleo17/notas-client",
+      "technologies": [
+        "React",
+        "NodeJS",
+        "Express",
+        "GraphQL",
+        "PostgreSQL",
+        "Docker",
+        "Tailwind"
+      ]
+    },
+    {
+      "name": "Gestor de asistencia",
+      "description": "Desarrollé junto a mis compañeros de clase una aplicación web para la gestión de asistencias de empleados en una empresa.",
+      "code_url": "https://github.com/andleo17/attendance-system-web",
+      "technologies": ["C#", "React", "CSS", "GraphQL", "SQL Server"]
+    },
+    {
+      "name": "Bot de Discord",
+      "description": "Desarrollé de un bot de Discord para gestionar actividades en la universidad. Además, contaba con funcionalidades personalizadas.",
+      "code_url": "https://github.com/andleo17/DiscordSistemasBot",
+      "technologies": ["TypeScript"]
+    }
+  ]
 }

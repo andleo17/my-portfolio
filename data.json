@@ -1,7 +1,10 @@
 {
   "information": {
-    "name": "Andrés Leonardo",
-    "lastname": "Baldárrago Gastulo",
+    "full_name": "Andrés Leonardo Baldárrago Gastulo",
+    "short_name": "Andrés Baldárrago",
+    "profession": "Ingeniero de Sistemas y Computación",
+    "short_description": "Desarrollador web, amante del aprendizaje contínuo, responsable y creativo.",
+    "description": "",
     "email": "andres.gastulo@gmail.com",
     "city": "Chiclayo",
     "country": "Perú"
@@ -9,7 +12,7 @@
   "socials": [
     {
       "name": "Portafolio",
-      "url": "https://andleo.vercel.app/",
+      "url": "https://andleo.dev/",
       "icon": "web"
     },
     {
@@ -17,7 +20,16 @@
       "url": "https://www.linkedin.com/in/andleo/",
       "icon": "linkedin"
     },
-    { "name": "GitHub", "url": "https://github.com/andleo17", "icon": "github" }
+    {
+      "name": "GitHub",
+      "url": "https://github.com/andleo17",
+      "icon": "github"
+    },
+    {
+      "name": "Email",
+      "url": "mailto:andres.gastulo@gmail.com",
+      "icon": "email"
+    }
   ],
   "competences": [
     "Autodidacta",
@@ -27,35 +39,53 @@
     "Gestor de redes"
   ],
   "skills": {
-    "Lenguajes de programación": [
-      { "name": "JavaScript", "level": 2, "icon": "js" },
-      { "name": "TypeScript", "level": 2, "icon": "ts" },
-      { "name": "HTML", "level": 2, "icon": "html" },
-      { "name": "CSS", "level": 2, "icon": "css" },
-      { "name": "Java", "level": 1, "icon": "java" },
-      { "name": "PHP", "level": 1, "icon": "php" },
-      { "name": "Python", "level": 0, "icon": "python" },
-      { "name": "C#", "level": 0, "icon": "csharp" }
-    ],
-    "Tecnologías": [
-      { "name": "React", "level": 2, "icon": "react" },
-      { "name": "Tailwind", "level": 2, "icon": "tailwind" },
-      { "name": "NextJS", "level": 1, "icon": "nextjs" },
-      { "name": "Laravel", "level": 1, "icon": "laravel" },
-      { "name": "GraphQL", "level": 1, "icon": "graphql" },
-      { "name": "Git", "level": 1, "icon": "git" }
-    ],
-    "Bases de datos": [
-      { "name": "PostgreSQL", "level": 2, "icon": "postgres" },
-      { "name": "MySQL", "level": 1, "icon": "mysql" },
-      { "name": "SQL Server", "level": 1, "icon": "sqlserver" },
-      { "name": "SQLite", "level": 1, "icon": "sqlite" },
-      { "name": "MongoDB", "level": 0, "icon": "mongodb" }
-    ],
-    "Servidores": [
-      { "name": "Linux", "level": 1, "icon": "linux" },
-      { "name": "Docker", "level": 1, "icon": "docker" }
-    ]
+    "backend": {
+      "Lenguajes": [
+        { "name": "NodeJS", "level": 3, "icon": "nodejs" },
+        { "name": "Java", "level": 1, "icon": "java" },
+        { "name": "PHP", "level": 1, "icon": "php" },
+        { "name": "Python", "level": 0, "icon": "python" },
+        { "name": "C#", "level": 0, "icon": "csharp" }
+      ],
+      "Frameworks": [
+        { "name": "Laravel", "level": 2, "icon": "laravel" },
+        { "name": "Express", "level": 2, "icon": "express" },
+        { "name": "GraphQL", "level": 1, "icon": "graphql" }
+      ],
+      "Bases de datos": [
+        { "name": "PostgreSQL", "level": 2, "icon": "postgres" },
+        { "name": "MySQL", "level": 1, "icon": "mysql" },
+        { "name": "SQL Server", "level": 1, "icon": "sqlserver" },
+        { "name": "SQLite", "level": 1, "icon": "sqlite" },
+        { "name": "MongoDB", "level": 0, "icon": "mongodb" }
+      ],
+      "Servidores": [
+        { "name": "Linux", "level": 1, "icon": "linux" },
+        { "name": "Docker", "level": 1, "icon": "docker" }
+      ]
+    },
+    "frontend": {
+      "Lenguajes": [
+        { "name": "JavaScript", "level": 2, "icon": "js" },
+        { "name": "TypeScript", "level": 2, "icon": "ts" },
+        { "name": "HTML", "level": 2, "icon": "html" },
+        { "name": "CSS", "level": 2, "icon": "css" }
+      ],
+      "Frameworks": [
+        { "name": "Next", "level": 3, "icon": "nextjs" },
+        { "name": "Astro", "level": 3, "icon": "astro" }
+      ],
+      "Tecnologías": [
+        { "name": "React", "level": 2, "icon": "react" },
+        { "name": "Tailwind", "level": 2, "icon": "tailwind" }
+      ]
+    },
+    "others": {
+      "Herramientas": [
+        { "name": "Git", "level": 1, "icon": "git" },
+        { "name": "GitHub", "level": 1, "icon": "github" }
+      ]
+    }
   },
   "languages": [
     {
@@ -120,7 +150,8 @@
         "Propuse mejoras en el diseño de la base de datos para que sea más flexible.",
         "Desarrollé parte del nuevo sistema del hospital basado en el framework Laravel y ReactJS."
       ],
-      "title": "Practicante en desarrollo de software"
+      "title": "Practicante en desarrollo de software",
+      "icon": "laptop-code"
     },
     {
       "institution": "Comisaria de Atusparia",
@@ -133,7 +164,8 @@
         "Diseñé la nueva solución en base a los requerimientos y mejoras propuestas por el personal de la comisaría y la junta vecinal del distrito.",
         "Desarrollé una aplicación web para el apoyo a la seguridad ciudadana basado en un \"botón de pánico\" y la visualización en tiempo real de las denuncias."
       ],
-      "title": "Desarrollador de software"
+      "title": "Desarrollador de software",
+      "icon": "laptop-code"
     }
   ],
   "projects": [

@@ -1,6 +1,9 @@
 export interface Information {
-  name: string;
-  lastname: string;
+  full_name: string;
+  short_name: string;
+  profession: string;
+  short_description: string;
+  description: string;
   email: string;
   city: string;
   country: string;
@@ -48,6 +51,7 @@ export interface WorkExperience {
   end_date?: string;
   goals: string[];
   title: string;
+  icon: string;
 }
 
 export interface Project {

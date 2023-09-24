@@ -1,0 +1,27 @@
+---
+import type { Skill as SkillType } from '../types';
+
+import Skill from './skill.astro';
+
+interface Props {
+	skills: SkillType[];
+	name: string;
+}
+
+const { skills, name } = Astro.props;
+---
+
+<div
+	class='flex flex-col bg-white overflow-hidden border border-gray-200 rounded-lg shadow dark:border-gray-700 dark:bg-gray-800'
+>
+	<div class='flex w-full justify-center items-center space-x-4 py-2'>
+		{
+			skills
+				.sort((s1, s2) => s2.level - s1.level)
+				.map((s) => <Skill data={s} />)
+		}
+	</div>
+	<b class='text-center text-sm py-1 bg-gray-100 dark:bg-gray-900'>
+		{name}
+	</b>
+</div>

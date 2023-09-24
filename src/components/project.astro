@@ -1,0 +1,72 @@
+---
+import type { Project } from '../types';
+
+import url from '../assets/icons/url.svg?raw';
+import github from '../assets/icons/github.svg?raw';
+import { readdir } from 'node:fs/promises';
+import { join } from 'node:path';
+
+interface Props {
+	data: Project;
+}
+
+const { data } = Astro.props;
+let thumbnails: string[] = [];
+if (data.thumbnails) {
+	const thumbnailsFolder = join('public/images/thumbnails', data.thumbnails);
+	const files = await readdir(thumbnailsFolder);
+	thumbnails = files.map(
+		(f: string) => `/images/thumbnails/${data.thumbnails}/${f}`
+	);
+}
+---
+
+<div
+	class='bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700'
+>
+	<div>
+		{
+			thumbnails.map((t: string) => (
+				<img
+					src={t}
+					alt={data.name + '-thumbnail'}
+					class='rounded-t-lg object-cover'
+				/>
+			))
+		}
+	</div>
+	<div class='flex flex-col p-5 h-full'>
+		<h5
+			class='mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white'
+		>
+			{data.name}
+		</h5>
+		<p class='flex-grow mb-3 font-normal text-gray-700 dark:text-gray-400'>
+			{data.description}
+		</p>
+		<div class='flex items-center gap-2' role='group'>
+			{
+				data.code_url && (
+					<a
+						href={data.code_url}
+						class='w-full inline-flex items-center gap-2 justify-center hover:text-white border border-green-700 hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:border-green-500 dark:hover:bg-green-600 dark:focus:ring-green-800 [&>*]:w-5 [&>*]:h-5 [&>*]:fill-black [&>*]:hover:fill-white [&>*]:dark:fill-white'
+					>
+						<Fragment set:html={github} />
+						Código
+					</a>
+				)
+			}
+			{
+				data.url && (
+					<a
+						href={data.url}
+						class='w-full inline-flex items-center gap-2 justify-center py-2.5 px-5 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700 [&>*]:w-5 [&>*]:h-5 [&>*]:fill-gray-900 dark:[&>*]:fill-gray-400'
+					>
+						<Fragment set:html={url} />
+						Visitar
+					</a>
+				)
+			}
+		</div>
+	</div>
+</div>

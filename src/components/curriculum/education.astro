@@ -10,24 +10,43 @@ interface Props {
 const { education } = Astro.props;
 
 dayjs.locale('es-mx');
+
+const isCurrent = !education.end_date;
 ---
 
 <div class='flex flex-col'>
-	<b>{education.goal}</b>
-	<span>{education.institution} | {education.city}, {education.country}</span>
-	<div class='capitalize space-x-2 text-sm italic print:text-xs'>
-		<span>
-			{dayjs(education.start_date).format('MMMM, YYYY')}
-		</span>
-		<span>-</span>
-		<span>
-			{
-				education.end_date ? (
-					dayjs(education.end_date).format('MMMM, YYYY')
-				) : (
-					<b>actualmente</b>
-				)
-			}
-		</span>
+	<div
+		class='flex gap-2 mb-1 text-sm font-normal leading-none text-gray-500 dark:text-gray-400'
+	>
+		<time>{dayjs(education.start_date).format('MMMM, YYYY')}</time>
+		{
+			education.end_date && (
+				<>
+					<span>-</span>
+					<time>{dayjs(education.end_date).format('MMMM, YYYY')}</time>
+				</>
+			)
+		}
+	</div>
+	<h3
+		class='flex items-center mb-1 text-lg font-semibold text-gray-900 dark:text-white'
+	>
+		{education.goal}
+		{
+			isCurrent && (
+				<span class='bg-blue-100 text-blue-800 text-sm font-medium mr-2 px-2.5 py-0.5 rounded dark:bg-blue-900 dark:text-blue-300 ml-3'>
+					Actual
+				</span>
+			)
+		}
+	</h3>
+	<div
+		class='flex sm:items-center text-sm font-normal leading-none flex-col sm:flex-row'
+	>
+		<span>{education.institution}</span>
+		<span
+			class='sm:ml-2 sm:pl-2 sm:border-l border-l-gray-600 dark:border-l-white'
+			>{education.city}, {education.country}</span
+		>
 	</div>
 </div>

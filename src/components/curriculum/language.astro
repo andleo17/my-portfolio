@@ -20,17 +20,13 @@ const formatedLevel = (
 const level = levels[formatedLevel];
 ---
 
-<li class='print:text-xs'>
-	<div class='flex justify-between items-center mb-2'>
-		<span class='font-bold'>{language.name}</span>
+<li>
+	<div class='flex justify-between mb-1'>
+		<span>{language.name}</span>
 		<span>{language.level !== 'native' ? language.level : 'Nativo'}</span>
 	</div>
 	<div class='rounded overflow-hidden w-full h-2 flex'>
-		<div
-			class='h-full bg-gray-700 dark:bg-gray-500'
-			style={`width: ${level * 100}%`}
-		>
-		</div>
+		<div class='h-full bg-gray-500' style={`width: ${level * 100}%`}></div>
 		<div class='h-full bg-white flex-grow'></div>
 	</div>
 </li>

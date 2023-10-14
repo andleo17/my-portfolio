@@ -4,90 +4,93 @@ import data from '../../data.json';
 import Layout from '../layouts/default.astro';
 
 import Hero from '../components/hero.astro';
-import Skill from '../components/skill.astro';
 import SkillGroup from '../components/skill-group.astro';
 import Project from '../components/project.astro';
 import WorkExperience from '../components/work-experience.astro';
 ---
 
 <Layout>
-	<main class='max-w-screen-xl mx-auto p-4'>
-		<div class='flex items-center h-[calc(100vh-73px)]'>
-			<Hero data={data.information} socials={data.socials} />
-		</div>
-		<section
-			id='work-experience'
-			class='flex items-center min-h-screen w-full mb-10'
-		>
-			<div class='w-full'>
-				<h2 class='mb-10 text-2xl font-bold lg:text-4xl'>
-					Experiencia laboral
-				</h2>
-				<ol
-					class='ml-4 xl:ml-0 relative border-l border-gray-400 dark:border-gray-700 space-y-10'
-				>
-					{data.work_experience.map((we) => <WorkExperience data={we} />)}
-				</ol>
-			</div>
-		</section>
-		<section id='projects' class='flex items-center min-h-screen w-full mb-10'>
-			<div class='w-full'>
-				<h2 class='mb-10 text-2xl font-bold lg:text-4xl'>Proyectos</h2>
-				<div class='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4'>
-					{data.projects.map((p) => <Project data={p} />)}
-				</div>
-			</div>
-		</section>
-		<section id='skills' class='flex items-center min-h-screen w-full'>
-			<div class='w-full'>
-				<h2 class='mb-10 text-2xl font-bold lg:text-4xl'>Habilidades</h2>
-				<div
-					class='grid gap-2 grid-cols-1 md:grid-cols-2 tracking-tight text-center'
-				>
-					<div>
-						<h3
-							class='text-2xl font-semibold pb-2 text-gray-600 dark:text-gray-300'
-						>
-							Backend
-						</h3>
-						<div class='space-y-3'>
-							{
-								Object.entries(data.skills['backend']).map(([k, v]) => (
-									<SkillGroup name={k} skills={v} />
-								))
-							}
-						</div>
-					</div>
-					<div>
-						<h3
-							class='text-2xl font-semibold pb-2 text-gray-600 dark:text-gray-300'
-						>
-							Frontend
-						</h3>
-						<div class='space-y-3'>
-							{
-								Object.entries(data.skills['frontend']).map(([k, v]) => (
-									<SkillGroup name={k} skills={v} />
-								))
-							}
-						</div>
-					</div>
-					<div class='md:col-span-2'>
-						<h3
-							class='text-2xl font-semibold pb-2 text-gray-600 dark:text-gray-300'
-						>
-							Extras
-						</h3>
-						<div class='space-y-3'>
-							{
-								Object.entries(data.skills['others']).map(([k, v]) => (
-									<SkillGroup name={k} skills={v} />
-								))
-							}
-						</div>
-					</div>
-				</div>
-			</div>
-		</section>
-	</main>
+  <main class='max-w-screen-xl mx-auto p-4'>
+    <div class='flex items-center h-[calc(100vh-73px)]'>
+      <Hero data={data.information} socials={data.socials} />
+    </div>
+    <section
+      id='work-experience'
+      class='flex items-center min-h-screen w-full mb-10'
+    >
+      <div class='w-full'>
+        <h2 class='mb-10 text-2xl font-bold lg:text-4xl'>
+          Experiencia laboral
+        </h2>
+        <ol
+          class='ml-4 relative border-l border-gray-400 dark:border-gray-700 space-y-10 xl:ml-0'
+        >
+          {
+            data.work_experience.map((we) => (
+              <WorkExperience data={we} showIcons />
+            ))
+          }
+        </ol>
+      </div>
+    </section>
+    <section id='projects' class='flex items-center min-h-screen w-full mb-10'>
+      <div class='w-full'>
+        <h2 class='mb-10 text-2xl font-bold lg:text-4xl'>Proyectos</h2>
+        <div class='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4'>
+          {data.projects.map((p) => <Project data={p} />)}
+        </div>
+      </div>
+    </section>
+    <section id='skills' class='flex items-center min-h-screen w-full'>
+      <div class='w-full'>
+        <h2 class='mb-10 text-2xl font-bold lg:text-4xl'>Conocimientos</h2>
+        <div
+          class='grid gap-2 grid-cols-1 md:grid-cols-2 tracking-tight text-center'
+        >
+          <div>
+            <h3
+              class='text-2xl font-semibold pb-2 text-gray-600 dark:text-gray-300'
+            >
+              Backend
+            </h3>
+            <div class='space-y-3'>
+              {
+                Object.entries(data.skills['backend']).map(([k, v]) => (
+                  <SkillGroup name={k} skills={v} />
+                ))
+              }
+            </div>
+          </div>
+          <div>
+            <h3
+              class='text-2xl font-semibold pb-2 text-gray-600 dark:text-gray-300'
+            >
+              Frontend
+            </h3>
+            <div class='space-y-3'>
+              {
+                Object.entries(data.skills['frontend']).map(([k, v]) => (
+                  <SkillGroup name={k} skills={v} />
+                ))
+              }
+            </div>
+          </div>
+          <div class='md:col-span-2'>
+            <h3
+              class='text-2xl font-semibold pb-2 text-gray-600 dark:text-gray-300'
+            >
+              Extras
+            </h3>
+            <div class='space-y-3'>
+              {
+                Object.entries(data.skills['others']).map(([k, v]) => (
+                  <SkillGroup name={k} skills={v} />
+                ))
+              }
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
 </Layout>

@@ -11,58 +11,103 @@ import CurriculumSection from '../components/curriculum/section.astro';
 ---
 
 <Layout>
-	<main
-		class='max-w-screen-xl mx-auto flex flex-col gap-4 p-4 lg:flex-row print:[print-color-adjust:exact]'
-	>
-		<div class='space-y-6 order-2 flex-grow lg:py-4 lg:order-first'>
-			<CurriculumSection title='Sobre mí'>
-				<p class='text-gray-600 dark:text-gray-400 text-sm'>
-					{data.information.description}
-				</p>
-			</CurriculumSection>
-			<CurriculumSection title='Experiencia laboral'>
-				<ol
-					class='ml-4 relative border-l text-sm border-gray-400 space-y-10 xl:ml-0 dark:border-gray-700'
-				>
-					{data.work_experience.map((we) => <WorkExperience data={we} />)}
-				</ol>
-			</CurriculumSection>
-			<CurriculumSection title='Formación académica'>
-				<div class='space-y-3'>
-					{data.education.map((e) => <Education education={e} />)}
-				</div>
-			</CurriculumSection>
-			<CurriculumSection title='Cursos'>
-				<div class='space-y-3'>
-					{data.courses.map((c) => <Course course={c} />)}
-				</div>
-			</CurriculumSection>
-			<CurriculumSection title='Conocimientos'>
-				<div class='space-y-2'>
-					{
-						Object.entries(data.skills['frontend']).map(([k, v]) => (
-							<div>
-								<b class='mb-2 block'>{k}</b>
-								<div class='flex gap-2 flex-wrap'>
-									{v
-										.sort((s1, s2) => s2.level - s1.level)
-										.map((s) => (
-											<span class='select-none border border-gray-800 rounded px-2 dark:border-gray-200'>
-												{s.name}
-											</span>
-										))}
-								</div>
-							</div>
-						))
-					}
-				</div>
-			</CurriculumSection>
-		</div>
-		<Sidebar
-			information={data.information}
-			socials={data.socials}
-			languages={data.languages}
-			competences={data.competences}
-		/>
-	</main>
+  <main
+    class='max-w-screen-xl mx-auto flex flex-col gap-4 p-4 lg:flex-row print:[print-color-adjust:exact]'
+  >
+    <div class='space-y-6 order-2 flex-grow lg:py-4 lg:order-first'>
+      <CurriculumSection title='Sobre mí'>
+        <p class='text-gray-600 dark:text-gray-400 text-sm'>
+          {data.information.description}
+        </p>
+      </CurriculumSection>
+      <CurriculumSection title='Experiencia laboral'>
+        <ol class='text-sm space-y-6'>
+          {data.work_experience.map((we) => <WorkExperience data={we} />)}
+        </ol>
+      </CurriculumSection>
+      <CurriculumSection title='Formación académica'>
+        <div class='space-y-3'>
+          {data.education.map((e) => <Education education={e} />)}
+        </div>
+      </CurriculumSection>
+      <CurriculumSection title='Cursos'>
+        <div class='space-y-3'>
+          {data.courses.map((c) => <Course course={c} />)}
+        </div>
+      </CurriculumSection>
+      <CurriculumSection title='Conocimientos'>
+        <div class='grid gap-2 md:grid-cols-3'>
+          <section>
+            <h3 class='font-bold text-lg text-center'>Backend</h3>
+            <div class='space-y-2'>
+              {
+                Object.entries(data.skills['backend']).map(([k, v]) => (
+                  <article>
+                    <h4 class='font-bold mb-2'>{k}</h4>
+                    <ul class='flex gap-2 flex-wrap'>
+                      {v
+                        .sort((s1, s2) => s2.level - s1.level)
+                        .map((s) => (
+                          <li class='select-none border border-gray-800 rounded px-2 dark:border-gray-200'>
+                            {s.name}
+                          </li>
+                        ))}
+                    </ul>
+                  </article>
+                ))
+              }
+            </div>
+          </section>
+          <section>
+            <h3 class='font-bold text-lg text-center'>Frontend</h3>
+            <div class='space-y-2'>
+              {
+                Object.entries(data.skills['frontend']).map(([k, v]) => (
+                  <article>
+                    <h4 class='font-bold mb-2'>{k}</h4>
+                    <ul class='flex gap-2 flex-wrap'>
+                      {v
+                        .sort((s1, s2) => s2.level - s1.level)
+                        .map((s) => (
+                          <li class='select-none border border-gray-800 rounded px-2 dark:border-gray-200'>
+                            {s.name}
+                          </li>
+                        ))}
+                    </ul>
+                  </article>
+                ))
+              }
+            </div>
+          </section>
+          <section>
+            <h3 class='font-bold text-lg text-center'>Extras</h3>
+            <div class='space-y-2'>
+              {
+                Object.entries(data.skills['others']).map(([k, v]) => (
+                  <article>
+                    <h4 class='font-bold mb-2'>{k}</h4>
+                    <ul class='flex gap-2 flex-wrap'>
+                      {v
+                        .sort((s1, s2) => s2.level - s1.level)
+                        .map((s) => (
+                          <li class='select-none border border-gray-800 rounded px-2 dark:border-gray-200'>
+                            {s.name}
+                          </li>
+                        ))}
+                    </ul>
+                  </article>
+                ))
+              }
+            </div>
+          </section>
+        </div>
+      </CurriculumSection>
+    </div>
+    <Sidebar
+      information={data.information}
+      socials={data.socials}
+      languages={data.languages}
+      competences={data.competences}
+    />
+  </main>
 </Layout>

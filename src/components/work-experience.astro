@@ -31,7 +31,7 @@ const isCurrent = !data.end_date;
     )
   }
   <div
-    class='flex gap-2 mb-1 text-sm font-normal leading-none text-gray-500 dark:text-gray-400'
+    class='flex gap-2 mb-1 text-sm font-normal leading-none text-gray-500 dark:text-gray-400 print:text-xs print:mb-0'
   >
     <time>{dayjs(data.start_date).format('MMMM, YYYY')}</time>
     {
@@ -44,7 +44,7 @@ const isCurrent = !data.end_date;
     }
   </div>
   <h3
-    class='flex items-center mb-1 text-lg font-semibold text-gray-900 dark:text-white'
+    class='flex items-center mb-1 text-lg font-semibold text-gray-900 dark:text-white print:text-base print:mb-0'
   >
     {data.title}
     {
@@ -56,7 +56,7 @@ const isCurrent = !data.end_date;
     }
   </h3>
   <div
-    class='flex sm:items-center text-sm font-normal leading-none flex-col sm:flex-row'
+    class='flex sm:items-center text-sm font-normal leading-none flex-col sm:flex-row print:text-xs'
   >
     <span>{data.institution}</span>
     <span
@@ -65,7 +65,7 @@ const isCurrent = !data.end_date;
     >
   </div>
   <ul
-    class='mt-4 font-normal space-y-1 text-gray-600 list-disc list-inside dark:text-gray-400'
+    class='mt-4 font-normal space-y-1 text-gray-600 list-disc list-inside dark:text-gray-400 print:text-sm print:mt-2 print:space-y-0'
   >
     {data.goals.map((g) => <li>{g}</li>)}
   </ul>

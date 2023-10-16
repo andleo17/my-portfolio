@@ -52,7 +52,7 @@ const { information, socials, languages, competences } = Astro.props;
           socials
             .filter((s) => s.name !== 'Email')
             .map((s) => (
-              <a href={s.url} title={s.name}>
+              <a href={s.url} title={s.name} target='_blank'>
                 <Fragment
                   set:html={import(`../../assets/icons/${s.icon}.svg?raw`).then(
                     (i) => i.default
@@ -69,6 +69,7 @@ const { information, socials, languages, competences } = Astro.props;
           href={`mailto:${information.email}`}
           class='flex gap-2 items-center'
           title={information.email}
+          target='_blank'
         >
           <Fragment set:html={emailIcon} />
           {information.email}

@@ -6,83 +6,84 @@ import { Image } from 'astro:assets';
 import profile from '../assets/profile.png';
 
 interface Props {
-	data: Information;
-	socials?: Social[];
+  data: Information;
+  socials?: Social[];
 }
 
 const { data, socials } = Astro.props;
 ---
 
 <div class='w-full my-4 text-center lg:text-left'>
-	<div class='flex items-center justify-between flex-col lg:flex-row gap-4'>
-		<div class='order-2 lg:order-first'>
-			<h1
-				class='mb-4 text-4xl font-extrabold leading-none tracking-tight md:text-5xl lg:text-6xl'
-			>
-				{data.short_name}
-			</h1>
-			<span class='text-xl font-semibold tracking-tight'>{data.profession}</span
-			>
-			<p
-				class='my-6 text-lg font-normal text-gray-600 lg:text-xl dark:text-gray-400'
-			>
-				{data.short_description}
-			</p>
-			<div class='flex flex-col lg:flex-row'>
-				<a
-					href='/curriculum'
-					class='inline-flex items-center justify-center px-5 py-3 text-base font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 dark:focus:ring-blue-900'
-					>Ver curriculum</a
-				>
-				{
-					socials && (
-						<div class='flex items-center justify-center mt-6 border-l-gray-500 dark:border-l-gray-400 gap-8 lg:mt-0 lg:ml-16 lg:pl-16 lg:border-l'>
-							{socials.map((s) => (
-								<a
-									href={s.url}
-									title={s.name}
-									class=' bg-gray-900 dark:bg-white p-2 rounded-full [&>*]:w-6 [&>*]:h-6 [&>*]:fill-gray-200 dark:[&>*]:fill-black'
-								>
-									<Fragment
-										set:html={import(`../assets/icons/${s.icon}.svg?raw`).then(
-											(i) => i.default
-										)}
-									/>
-								</a>
-							))}
-						</div>
-					)
-				}
-			</div>
-		</div>
-		<Image
-			src={profile}
-			alt='Foto de perfil'
-			height={300}
-			width={300}
-			class='rounded-full w-52 h-52 md:w-80 md:h-80 bg-gray-300 dark:bg-gray-900 object-cover object-top shadow shadow-gray-300 dark:shadow-gray-800'
-		/>
-	</div>
-	<div class='w-full text-center'>
-		<div
-			id='more-button'
-			class='mt-20 inline-flex flex-col justify-center items-center select-none cursor-pointer animate-bounce'
-		>
-			<span class='text-xl font-bold'>Conóceme más</span>
-			<svg viewBox='0 0 448 512' class='w-5 h-5 fill-gray-900 dark:fill-white'
-				><path
-					d='M246.6 470.6c-12.5 12.5-32.8 12.5-45.3 0l-160-160c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0L224 402.7 361.4 265.4c12.5-12.5 32.8-12.5 45.3 0s12.5 32.8 0 45.3l-160 160zm160-352l-160 160c-12.5 12.5-32.8 12.5-45.3 0l-160-160c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0L224 210.7 361.4 73.4c12.5-12.5 32.8-12.5 45.3 0s12.5 32.8 0 45.3z'
-				></path></svg
-			>
-		</div>
-	</div>
+  <div class='flex items-center justify-between flex-col lg:flex-row gap-4'>
+    <div class='order-2 lg:order-first'>
+      <h1
+        class='mb-4 text-4xl font-extrabold leading-none tracking-tight md:text-5xl lg:text-6xl'
+      >
+        {data.short_name}
+      </h1>
+      <span class='text-xl font-semibold tracking-tight'>{data.profession}</span
+      >
+      <p
+        class='my-6 text-lg font-normal text-gray-600 lg:text-xl dark:text-gray-400'
+      >
+        {data.short_description}
+      </p>
+      <div class='flex flex-col lg:flex-row'>
+        <a
+          href='/curriculum'
+          class='inline-flex items-center justify-center px-5 py-3 text-base font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 dark:focus:ring-blue-900'
+          >Ver curriculum</a
+        >
+        {
+          socials && (
+            <div class='flex items-center justify-center mt-6 border-l-gray-500 dark:border-l-gray-400 gap-8 lg:mt-0 lg:ml-16 lg:pl-16 lg:border-l'>
+              {socials.map((s) => (
+                <a
+                  href={s.url}
+                  title={s.name}
+                  class=' bg-gray-900 dark:bg-white p-2 rounded-full [&>*]:w-6 [&>*]:h-6 [&>*]:fill-gray-200 dark:[&>*]:fill-black'
+                  target='_blank'
+                >
+                  <Fragment
+                    set:html={import(`../assets/icons/${s.icon}.svg?raw`).then(
+                      (i) => i.default
+                    )}
+                  />
+                </a>
+              ))}
+            </div>
+          )
+        }
+      </div>
+    </div>
+    <Image
+      src={profile}
+      alt='Foto de perfil'
+      height={300}
+      width={300}
+      class='rounded-full w-52 h-52 md:w-80 md:h-80 bg-gray-300 dark:bg-gray-900 object-cover object-top shadow shadow-gray-300 dark:shadow-gray-800'
+    />
+  </div>
+  <div class='w-full text-center'>
+    <div
+      id='more-button'
+      class='mt-20 inline-flex flex-col justify-center items-center select-none cursor-pointer animate-bounce'
+    >
+      <span class='text-xl font-bold'>Conóceme más</span>
+      <svg viewBox='0 0 448 512' class='w-5 h-5 fill-gray-900 dark:fill-white'
+        ><path
+          d='M246.6 470.6c-12.5 12.5-32.8 12.5-45.3 0l-160-160c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0L224 402.7 361.4 265.4c12.5-12.5 32.8-12.5 45.3 0s12.5 32.8 0 45.3l-160 160zm160-352l-160 160c-12.5 12.5-32.8 12.5-45.3 0l-160-160c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0L224 210.7 361.4 73.4c12.5-12.5 32.8-12.5 45.3 0s12.5 32.8 0 45.3z'
+        ></path></svg
+      >
+    </div>
+  </div>
 </div>
 
 <script>
-	const $moreButton = document.querySelector<HTMLDivElement>('#more-button')!;
-	const $firstSection = document.querySelector('section')!;
+  const $moreButton = document.querySelector<HTMLDivElement>('#more-button')!;
+  const $firstSection = document.querySelector('section')!;
 
-	$moreButton.addEventListener('click', () => {
-		$firstSection.scrollIntoView({ behavior: 'smooth' });
-	});
+  $moreButton.addEventListener('click', () => {
+    $firstSection.scrollIntoView({ behavior: 'smooth' });
+  });
 </script>

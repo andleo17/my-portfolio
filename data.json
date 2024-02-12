@@ -139,6 +139,18 @@
   ],
   "work_experience": [
     {
+      "institution": "SiempreSoft",
+      "country": "Perú",
+      "city": "Chiclayo",
+      "start_date": "2023-11-09",
+      "goals": [
+        "Analicé y revisé las nuevas funcionalidades y correcciones que se hacían al sistema ERP de la empresa.",
+        "Desarrollé parte del nuevo sistema de pruebas automáticas al servicio web."
+      ],
+      "title": "Analista QA",
+      "icon": "laptop-code"
+    },
+    {
       "institution": "Hospital Regional Docente Las Mercedes",
       "country": "Perú",
       "city": "Chiclayo",

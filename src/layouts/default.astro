@@ -1,6 +1,7 @@
 ---
 import Navbar from '../components/navbar.astro';
 import data from '../../data.json';
+import '../styles/global.css';
 
 interface Props {
   title?: string;
@@ -84,7 +85,7 @@ const imageUrl = new URL(image, siteUrl);
       }
     </script>
     <script>
-      import 'flowbite';
+      // flowbite retirado: la navbar lleva su propio menú móvil
     </script>
 
     <style is:global>

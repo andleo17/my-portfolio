@@ -1,0 +1,17 @@
+@import "tailwindcss";
+
+/* El toggle de tema pone/quita .dark en <html>: hay que decírselo a Tailwind 4,
+   que por defecto usa prefers-color-scheme. */
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+  --font-sans: "Inter", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-sans);
+}

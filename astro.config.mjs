@@ -1,12 +1,10 @@
-import { defineConfig, squooshImageService } from "astro/config";
-
-import tailwind from "@astrojs/tailwind";
+import { defineConfig } from 'astro/config';
+import tailwindcss from '@tailwindcss/vite';
 
 // https://astro.build/config
 export default defineConfig({
-  site: "https://andleo.dev",
-  image: {
-    service: squooshImageService(),
+  site: 'https://andleo.dev',
+  vite: {
+    plugins: [tailwindcss()],
   },
-  integrations: [tailwind()],
 });

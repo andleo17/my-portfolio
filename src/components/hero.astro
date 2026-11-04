@@ -8,41 +8,83 @@ import profile from '../assets/profile.png';
 interface Props {
   data: Information;
   socials?: Social[];
+  currentRole?: string;
+  currentCompany?: string;
 }
 
-const { data, socials } = Astro.props;
+const { data, socials, currentRole, currentCompany } = Astro.props;
 ---
 
-<div class='w-full my-4 text-center lg:text-left'>
-  <div class='flex items-center justify-between flex-col lg:flex-row gap-4'>
-    <div class='order-2 lg:order-first'>
-      <h1
-        class='mb-4 text-4xl font-extrabold leading-none tracking-tight md:text-5xl lg:text-6xl'
+<section
+  class='mx-auto flex min-h-[calc(100svh-4.5rem)] max-w-6xl flex-col-reverse items-center justify-center gap-12 px-4 py-16 sm:px-6 lg:flex-row lg:gap-16 lg:px-8'
+>
+  <div class='max-w-2xl text-center lg:text-left'>
+    <p
+      class='inline-flex items-center gap-2 rounded-full border border-gray-200 bg-white px-3 py-1 text-xs font-medium text-gray-600 shadow-sm dark:border-gray-800 dark:bg-gray-900 dark:text-gray-300'
+    >
+      <span class='h-2 w-2 rounded-full bg-emerald-500' aria-hidden='true'
+      ></span>
+      {data.city}, {data.country}
+    </p>
+
+    <h1
+      class='mt-6 text-4xl font-extrabold tracking-tight text-gray-900 sm:text-5xl lg:text-6xl dark:text-white'
+    >
+      {data.short_name}
+    </h1>
+
+    <p
+      class='mt-4 text-lg font-semibold leading-snug text-blue-700 sm:text-xl dark:text-blue-400'
+    >
+      {data.profession}
+    </p>
+
+    {
+      (currentRole || currentCompany) && (
+        <p class='mt-2 text-sm font-medium text-gray-500 dark:text-gray-400'>
+          {currentCompany
+            ? `Actualmente en ${currentCompany}`
+            : `Actualmente ${currentRole}`}
+        </p>
+      )
+    }
+
+    <p
+      class='mt-6 max-w-xl text-base leading-relaxed text-gray-600 sm:text-lg dark:text-gray-300'
+    >
+      {data.short_description}
+    </p>
+
+    <div
+      class='mt-8 flex flex-col items-center gap-5 sm:flex-row sm:justify-center lg:justify-start'
+    >
+      <a
+        href='/curriculum'
+        class='inline-flex w-full items-center justify-center rounded-lg bg-blue-700 px-5 py-3 text-sm font-semibold text-white shadow-sm transition hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 sm:w-auto dark:bg-blue-600 dark:hover:bg-blue-500 dark:focus:ring-blue-900'
       >
-        {data.short_name}
-      </h1>
-      <span class='text-xl font-semibold tracking-tight'>{data.profession}</span
-      >
-      <p
-        class='my-6 text-lg font-normal text-gray-600 lg:text-xl dark:text-gray-400'
-      >
-        {data.short_description}
-      </p>
-      <div class='flex flex-col lg:flex-row'>
-        <a
-          href='/curriculum'
-          class='inline-flex items-center justify-center px-5 py-3 text-base font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 dark:focus:ring-blue-900'
-          >Ver curriculum</a
-        >
-        {
-          socials && (
-            <div class='flex items-center justify-center mt-6 border-l-gray-500 dark:border-l-gray-400 gap-8 lg:mt-0 lg:ml-16 lg:pl-16 lg:border-l'>
-              {socials.map((s) => (
+        Ver curriculum
+      </a>
+
+      {
+        socials && socials.length > 0 && (
+          <ul class='flex flex-wrap items-center justify-center gap-2'>
+            {socials.map((s) => (
+              <li>
                 <a
                   href={s.url}
                   title={s.name}
-                  class=' bg-gray-900 dark:bg-white p-2 rounded-full [&>*]:w-6 [&>*]:h-6 [&>*]:fill-gray-200 dark:[&>*]:fill-black'
-                  target='_blank'
+                  aria-label={
+                    s.name === 'Email' ? 'Enviar correo electrónico' : s.name
+                  }
+                  class='inline-flex h-11 w-11 items-center justify-center rounded-full border border-gray-200 bg-white text-gray-700 shadow-sm transition hover:border-blue-300 hover:bg-blue-50 hover:text-blue-700 focus:ring-4 focus:ring-blue-200 dark:border-gray-800 dark:bg-gray-900 dark:text-gray-300 dark:hover:border-blue-700 dark:hover:bg-blue-950 dark:hover:text-blue-300 dark:focus:ring-blue-900 [&_svg]:h-5 [&_svg]:w-5 [&_svg]:fill-current'
+                  target={
+                    s.url.startsWith('mailto:') ? undefined : '_blank'
+                  }
+                  rel={
+                    s.url.startsWith('mailto:')
+                      ? undefined
+                      : 'noopener noreferrer'
+                  }
                 >
                   <Fragment
                     set:html={import(`../assets/icons/${s.icon}.svg?raw`).then(
@@ -50,40 +92,26 @@ const { data, socials } = Astro.props;
                     )}
                   />
                 </a>
-              ))}
-            </div>
-          )
-        }
-      </div>
+              </li>
+            ))}
+          </ul>
+        )
+      }
+    </div>
+  </div>
+
+  <div class='relative shrink-0'>
+    <div
+      class='absolute inset-0 rounded-full bg-blue-100 blur-3xl dark:bg-blue-950/60'
+      aria-hidden='true'
+    >
     </div>
     <Image
       src={profile}
-      alt='Foto de perfil'
-      height={300}
-      width={300}
-      class='rounded-full w-52 h-52 md:w-80 md:h-80 bg-gray-300 dark:bg-gray-900 object-cover object-top shadow shadow-gray-300 dark:shadow-gray-800'
+      alt={`Foto de perfil de ${data.full_name}`}
+      height={320}
+      width={320}
+      class='relative h-56 w-56 rounded-full bg-gray-200 object-cover object-top shadow-xl ring-4 ring-white sm:h-72 sm:w-72 dark:bg-gray-900 dark:ring-gray-900'
     />
   </div>
-  <div class='w-full text-center'>
-    <div
-      id='more-button'
-      class='mt-20 inline-flex flex-col justify-center items-center select-none cursor-pointer animate-bounce'
-    >
-      <span class='text-xl font-bold'>Conóceme más</span>
-      <svg viewBox='0 0 448 512' class='w-5 h-5 fill-gray-900 dark:fill-white'
-        ><path
-          d='M246.6 470.6c-12.5 12.5-32.8 12.5-45.3 0l-160-160c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0L224 402.7 361.4 265.4c12.5-12.5 32.8-12.5 45.3 0s12.5 32.8 0 45.3l-160 160zm160-352l-160 160c-12.5 12.5-32.8 12.5-45.3 0l-160-160c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0L224 210.7 361.4 73.4c12.5-12.5 32.8-12.5 45.3 0s12.5 32.8 0 45.3z'
-        ></path></svg
-      >
-    </div>
-  </div>
-</div>
-
-<script>
-  const $moreButton = document.querySelector<HTMLDivElement>('#more-button')!;
-  const $firstSection = document.querySelector('section')!;
-
-  $moreButton.addEventListener('click', () => {
-    $firstSection.scrollIntoView({ behavior: 'smooth' });
-  });
-</script>
+</section>

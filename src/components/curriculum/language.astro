@@ -2,31 +2,45 @@
 import type { Language } from '../../types';
 
 interface Props {
-	language: Language;
+  language: Language;
 }
-
-const levels = {
-	native: 1,
-	A: 0.25,
-	B: 0.5,
-	C: 0.75,
-};
 
 const { language } = Astro.props;
 
-const formatedLevel = (
-	language.level !== 'native' ? language.level[0] : 'native'
-) as keyof typeof levels;
-const level = levels[formatedLevel];
+const levels: Record<string, number> = {
+  native: 100,
+  A1: 20,
+  A2: 30,
+  B1: 45,
+  B2: 60,
+  C1: 80,
+  C2: 100,
+  A: 25,
+  B: 50,
+  C: 75,
+};
+
+const percentage = levels[language.level] ?? 50;
+const displayedLevel = language.level === 'native' ? 'Nativo' : language.level;
 ---
 
 <li>
-	<div class='flex justify-between mb-1'>
-		<span>{language.name}</span>
-		<span>{language.level !== 'native' ? language.level : 'Nativo'}</span>
-	</div>
-	<div class='rounded overflow-hidden w-full h-2 flex'>
-		<div class='h-full bg-gray-500' style={`width: ${level * 100}%`}></div>
-		<div class='h-full bg-white flex-grow'></div>
-	</div>
+  <div class='mb-1 flex items-center justify-between gap-2'>
+    <span>{language.name}</span>
+    <span class='text-gray-600 dark:text-gray-400'>{displayedLevel}</span>
+  </div>
+  <div
+    class='h-2 w-full overflow-hidden rounded-full bg-gray-200 dark:bg-gray-700'
+    role='progressbar'
+    aria-label={`Nivel de ${language.name}: ${displayedLevel}`}
+    aria-valuemin='0'
+    aria-valuemax='100'
+    aria-valuenow={percentage}
+  >
+    <div
+      class='h-full rounded-full bg-blue-600 dark:bg-blue-400'
+      style={`width: ${percentage}%`}
+    >
+    </div>
+  </div>
 </li>

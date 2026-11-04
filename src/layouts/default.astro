@@ -1,31 +1,119 @@
 ---
 import Navbar from '../components/navbar.astro';
+import data from '../../data.json';
+
+interface Props {
+  title?: string;
+  description?: string;
+  image?: string;
+  jsonLd?: Record<string, unknown>;
+}
+
+const {
+  title = `${data.information.short_name} — ${data.information.profession.split(' · ')[0]}`,
+  description = data.information.short_description,
+  image = '/images/profile.jpg',
+  jsonLd,
+} = Astro.props;
+
+const siteUrl = 'https://andleo.dev';
+const canonicalUrl = `${siteUrl}${
+  Astro.url.pathname === '/' ? '' : Astro.url.pathname
+}`;
+const imageUrl = new URL(image, siteUrl);
 ---
 
 <html lang='es' class='scroll-smooth'>
   <head>
     <meta charset='utf-8' />
     <link rel='icon' type='image/svg+xml' href='/favicon.svg' />
-    <meta name='viewport' content='width=device-width' />
+    <meta name='viewport' content='width=device-width, initial-scale=1' />
     <meta name='generator' content={Astro.generator} />
-    <title>Portafolio de Andrés</title>
+    <meta name='color-scheme' content='light dark' />
+
+    <title>{title}</title>
+    <meta name='description' content={description} />
+    <meta name='author' content={data.information.full_name} />
+    <link rel='canonical' href={canonicalUrl} />
+
+    <meta property='og:type' content='website' />
+    <meta property='og:site_name' content={data.information.short_name} />
+    <meta property='og:locale' content='es_PE' />
+    <meta property='og:title' content={title} />
+    <meta property='og:description' content={description} />
+    <meta property='og:url' content={canonicalUrl} />
+    <meta property='og:image' content={imageUrl.toString()} />
+    <meta
+      property='og:image:alt'
+      content={`Foto de perfil de ${data.information.short_name}`}
+    />
+
+    <meta name='twitter:card' content='summary_large_image' />
+    <meta name='twitter:title' content={title} />
+    <meta name='twitter:description' content={description} />
+    <meta name='twitter:image' content={imageUrl.toString()} />
+    <meta
+      name='twitter:image:alt'
+      content={`Foto de perfil de ${data.information.short_name}`}
+    />
+
+    <meta
+      name='theme-color'
+      media='(prefers-color-scheme: light)'
+      content='#f9fafb'
+    />
+    <meta
+      name='theme-color'
+      media='(prefers-color-scheme: dark)'
+      content='#030712'
+    />
+
+    {jsonLd && (
+      <script type='application/ld+json' set:html={JSON.stringify(jsonLd)} />
+    )}
+
     <script is:inline>
-    if (
-      localStorage.getItem('color-theme') === 'dark' ||
-      (!('color-theme' in localStorage) &&
-        window.matchMedia('(prefers-color-scheme: dark)').matches)
-    ) {
-      document.documentElement.classList.add('dark');
-    } else {
-      document.documentElement.classList.remove('dark');
-    }
+      if (
+        localStorage.getItem('color-theme') === 'dark' ||
+        (!('color-theme' in localStorage) &&
+          window.matchMedia('(prefers-color-scheme: dark)').matches)
+      ) {
+        document.documentElement.classList.add('dark');
+      } else {
+        document.documentElement.classList.remove('dark');
+      }
     </script>
     <script>
       import 'flowbite';
     </script>
+
+    <style is:global>
+      :focus-visible {
+        outline: 2px solid #2563eb;
+        outline-offset: 3px;
+      }
+
+      .dark :focus-visible {
+        outline-color: #60a5fa;
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        html {
+          scroll-behavior: auto;
+        }
+
+        *,
+        *::before,
+        *::after {
+          animation-duration: 0.01ms !important;
+          animation-iteration-count: 1 !important;
+          transition-duration: 0.01ms !important;
+        }
+      }
+    </style>
   </head>
   <body
-    class='relative bg-gray-100 text-gray-900 dark:bg-gray-950 dark:text-white'
+    class='relative min-h-screen overflow-x-hidden bg-gray-50 text-gray-900 antialiased dark:bg-gray-950 dark:text-gray-50'
   >
     <Navbar />
     <slot />

@@ -1,10 +1,10 @@
 {
   "information": {
-    "full_name": "Andrés Baldárrago Gastulo",
+    "full_name": "Andrés Leonardo Baldárrago Gastulo",
     "short_name": "Andrés Baldárrago",
-    "profession": "Ingeniero de Sistemas y Computación",
-    "short_description": "Desarrollador web, amante del aprendizaje contínuo, responsable y creativo.",
-    "description": "Desarrollador web full-stack con experiencia en la creación de APIs web con GraphQL e interfaces de usuario con React. Me encanta aprender cosas nuevas y aplicarlas en mi vida diaria. Amante de la tecnología y las nuevas experiencias.",
+    "profession": "Jefe de Aseguramiento de la Calidad · Ingeniero de Sistemas y Computación",
+    "short_description": "Lidero el aseguramiento de la calidad en Siempresoft. Ingeniero de sistemas, desarrollador full-stack y autodidacta empedernido.",
+    "description": "Ingeniero de Sistemas y Computación por la Universidad Católica Santo Toribio de Mogrovejo. Hoy lidero el área de aseguramiento de la calidad en Siempresoft, donde definimos procesos de prueba y automatización sobre un ERP y sus servicios web. Vengo del desarrollo full-stack en JavaScript y TypeScript, con especial cariño por las Web APIs (GraphQL y REST), y sigo programando por gusto: automatizaciones, bots, homelab y herramientas que uso a diario.",
     "email": "andres.gastulo@gmail.com",
     "city": "Chiclayo",
     "country": "Perú"
@@ -32,58 +32,70 @@
     }
   ],
   "competences": [
+    "Aseguramiento de la calidad (QA)",
+    "Liderazgo de equipos",
+    "Automatización de pruebas",
+    "Desarrollo full-stack",
+    "Análisis de sistemas",
     "Autodidacta",
-    "Trabajo en equipo",
-    "Desarrollador web",
-    "Analista de sistemas",
-    "Gestor de redes"
+    "Trabajo en equipo"
   ],
   "skills": {
     "backend": {
       "Lenguajes": [
         { "name": "NodeJS", "level": 3, "icon": "nodejs" },
+        { "name": "TypeScript", "level": 3, "icon": "ts" },
+        { "name": "Python", "level": 2, "icon": "python" },
+        { "name": "PHP", "level": 2, "icon": "php" },
         { "name": "Java", "level": 1, "icon": "java" },
-        { "name": "PHP", "level": 1, "icon": "php" },
-        { "name": "Python", "level": 0, "icon": "python" },
-        { "name": "C#", "level": 0, "icon": "csharp" }
+        { "name": "C#", "level": 1, "icon": "csharp" }
       ],
       "Frameworks": [
         { "name": "Laravel", "level": 2, "icon": "laravel" },
         { "name": "Express", "level": 2, "icon": "express" },
-        { "name": "GraphQL", "level": 1, "icon": "graphql" }
+        { "name": "GraphQL", "level": 2, "icon": "graphql" },
+        { "name": "Prisma", "level": 1 }
       ],
       "Bases de datos": [
-        { "name": "PostgreSQL", "level": 2, "icon": "postgres" },
-        { "name": "MySQL", "level": 1, "icon": "mysql" },
+        { "name": "PostgreSQL", "level": 3, "icon": "postgres" },
+        { "name": "MySQL", "level": 2, "icon": "mysql" },
         { "name": "SQL Server", "level": 1, "icon": "sqlserver" },
         { "name": "SQLite", "level": 1, "icon": "sqlite" },
-        { "name": "MongoDB", "level": 0, "icon": "mongodb" }
+        { "name": "MongoDB", "level": 1, "icon": "mongodb" }
       ],
       "Servidores": [
-        { "name": "Linux", "level": 1, "icon": "linux" },
-        { "name": "Docker", "level": 1, "icon": "docker" }
+        { "name": "Linux", "level": 2, "icon": "linux" },
+        { "name": "Docker", "level": 2, "icon": "docker" }
       ]
     },
     "frontend": {
       "Lenguajes": [
-        { "name": "JavaScript", "level": 2, "icon": "js" },
-        { "name": "TypeScript", "level": 2, "icon": "ts" },
-        { "name": "HTML", "level": 2, "icon": "html" },
-        { "name": "CSS", "level": 2, "icon": "css" }
+        { "name": "JavaScript", "level": 3, "icon": "js" },
+        { "name": "TypeScript", "level": 3, "icon": "ts" },
+        { "name": "HTML", "level": 3, "icon": "html" },
+        { "name": "CSS", "level": 3, "icon": "css" }
       ],
       "Frameworks": [
         { "name": "Next", "level": 3, "icon": "nextjs" },
-        { "name": "Astro", "level": 3, "icon": "astro" }
+        { "name": "Astro", "level": 3, "icon": "astro" },
+        { "name": "React", "level": 2, "icon": "react" }
       ],
       "Tecnologías": [
-        { "name": "React", "level": 2, "icon": "react" },
         { "name": "Tailwind", "level": 2, "icon": "tailwind" }
+      ]
+    },
+    "quality": {
+      "Aseguramiento de la calidad": [
+        { "name": "Testing manual y de regresión", "level": 3 },
+        { "name": "Automatización de pruebas", "level": 2 },
+        { "name": "Diseño de casos de prueba", "level": 3 },
+        { "name": "Documentación técnica", "level": 3 }
       ]
     },
     "others": {
       "Herramientas": [
-        { "name": "Git", "level": 1, "icon": "git" },
-        { "name": "GitHub", "level": 1, "icon": "github" }
+        { "name": "Git", "level": 2, "icon": "git" },
+        { "name": "GitHub", "level": 2, "icon": "github" }
       ]
     }
   },
@@ -94,7 +106,7 @@
     },
     {
       "name": "Inglés",
-      "level": "B1"
+      "level": "B2"
     }
   ],
   "education": [
@@ -102,7 +114,7 @@
       "institution": "Universidad Católica Santo Toribio de Mogrovejo",
       "start_date": "2017-03-01",
       "end_date": "2022-12-01",
-      "goal": "Ingeniero de sistemas y computación",
+      "goal": "Ingeniero de Sistemas y Computación",
       "country": "Perú",
       "city": "Chiclayo"
     }
@@ -135,19 +147,58 @@
       "start_date": "2021-10-10",
       "end_date": "2022-01-15",
       "certification_url": "/images/certifications/diploma-php.jpg"
+    },
+    {
+      "name": "Curso Avanzado de Java SE",
+      "institution": "Platzi",
+      "start_date": "2019-01-01",
+      "end_date": "2019-12-31"
+    },
+    {
+      "name": "Curso de Testing Básico en Java",
+      "institution": "Platzi",
+      "start_date": "2019-01-01",
+      "end_date": "2019-12-31"
+    },
+    {
+      "name": "Curso de SQL y MySQL",
+      "institution": "Platzi",
+      "start_date": "2019-01-01",
+      "end_date": "2019-12-31"
+    },
+    {
+      "name": "Curso Profesional de Git y GitHub",
+      "institution": "Platzi",
+      "start_date": "2019-01-01",
+      "end_date": "2019-12-31"
     }
   ],
   "work_experience": [
     {
-      "institution": "SiempreSoft",
+      "institution": "Siempresoft",
+      "country": "Perú",
+      "city": "Chiclayo",
+      "start_date": "2025-07-01",
+      "goals": [
+        "Lidero el área de aseguramiento de la calidad del ERP de la empresa y de sus servicios web.",
+        "Defino los procesos de prueba, los criterios de aceptación y la estrategia de automatización.",
+        "Coordino al equipo de QA y la comunicación con desarrollo y negocio sobre la calidad de cada entrega."
+      ],
+      "title": "Jefe de Aseguramiento de la Calidad",
+      "icon": "laptop-code"
+    },
+    {
+      "institution": "Siempresoft",
       "country": "Perú",
       "city": "Chiclayo",
       "start_date": "2023-11-09",
+      "end_date": "2025-06-30",
       "goals": [
         "Analicé y revisé las nuevas funcionalidades y correcciones que se hacían al sistema ERP de la empresa.",
-        "Desarrollé parte del nuevo sistema de pruebas automáticas al servicio web."
+        "Desarrollé parte del nuevo sistema de pruebas automáticas al servicio web.",
+        "Documenté hallazgos y acompañé cada despliegue verificando que no hubiera regresiones."
       ],
-      "title": "Analista QA",
+      "title": "Analista de Aseguramiento de la Calidad",
       "icon": "laptop-code"
     },
     {
@@ -166,58 +217,92 @@
       "icon": "laptop-code"
     },
     {
-      "institution": "Comisaria de Atusparia",
+      "institution": "Comisaría de Atusparia",
       "country": "Perú",
       "city": "Chiclayo",
-      "start_date": "2022-01-1",
-      "end_date": "2022-12-01",
+      "start_date": "2022-01-01",
+      "end_date": "2023-02-01",
       "goals": [
         "Analicé las necesidades dentro de la comisaría y las de los ciudadanos para proponer una mejora en la seguridad ciudadana del distrito de Atusparia.",
         "Diseñé la nueva solución en base a los requerimientos y mejoras propuestas por el personal de la comisaría y la junta vecinal del distrito.",
-        "Desarrollé una aplicación web para el apoyo a la seguridad ciudadana basado en un \"botón de pánico\" y la visualización en tiempo real de las denuncias."
+        "Desarrollé una aplicación web para el apoyo a la seguridad ciudadana basada en un \"botón de pánico\" y la visualización en tiempo real de las denuncias."
       ],
-      "title": "Desarrollador de software",
+      "title": "Analista de software",
       "icon": "laptop-code"
     }
   ],
   "projects": [
     {
+      "name": "ccdesk",
+      "description": "Control de escritorio para agentes de código en Linux: servidor MCP y skill para capturas de pantalla, ratón, teclado y ventanas.",
+      "code_url": "https://github.com/andleo17/ccdesk",
+      "technologies": ["Python", "MCP", "Linux"]
+    },
+    {
+      "name": "tidal-hifi",
+      "description": "Cliente de escritorio de Tidal con calidad Hi-Fi, empaquetado en Electron con soporte de Widevine.",
+      "code_url": "https://github.com/andleo17/tidal-hifi",
+      "technologies": ["TypeScript", "Electron"]
+    },
+    {
+      "name": "Wand-Enhancer",
+      "description": "Extensión de interoperabilidad y mejoras de experiencia para Wand (WeMod), inyectando funcionalidad sobre la app original.",
+      "code_url": "https://github.com/andleo17/Wand-Enhancer",
+      "technologies": ["C#", ".NET"]
+    },
+    {
+      "name": "Garbage Tracker",
+      "description": "Sistema de seguimiento de recolección de residuos: API, panel administrativo y app para el ciudadano.",
+      "code_url": "https://github.com/andleo17/garbage-tracker",
+      "technologies": ["PHP", "Laravel", "PostgreSQL"]
+    },
+    {
+      "name": "News App",
+      "description": "Lector de noticias con integración de fuentes externas, construido en TypeScript.",
+      "code_url": "https://github.com/andleo17/news-app",
+      "technologies": ["TypeScript", "Next", "React"]
+    },
+    {
+      "name": "Citizen Security",
+      "description": "Plataforma de seguridad ciudadana con botón de pánico y visualización de denuncias en tiempo real, nacida del trabajo con la Comisaría de Atusparia.",
+      "code_url": "https://github.com/andleo17/citizen-security-app",
+      "technologies": ["PHP", "Laravel", "MySQL", "React"]
+    },
+    {
+      "name": "Gestor de notas académicas",
+      "description": "Aplicación web para gestionar calificaciones según el sílabo: estructura de pesos y cálculo de las notas que faltan para llegar al objetivo.",
+      "code_url": "https://github.com/andleo17/notas-client",
+      "technologies": ["React", "NodeJS", "Express", "GraphQL", "PostgreSQL", "Tailwind"]
+    },
+    {
+      "name": "GraphQL API de restaurante",
+      "description": "Web API con GraphQL para la operación de un restaurante: CRUD completo y lógica de negocio.",
+      "code_url": "https://github.com/andleo17/sistema-mia-casa",
+      "technologies": ["NodeJS", "GraphQL", "PostgreSQL", "Prisma"]
+    },
+    {
+      "name": "Gestor de asistencia",
+      "description": "Aplicación web para la gestión de asistencias de empleados en una empresa.",
+      "code_url": "https://github.com/andleo17/attendance-system-web",
+      "technologies": ["C#", "React", "GraphQL", "SQL Server"]
+    },
+    {
+      "name": "Catálogo de cursos",
+      "description": "Catálogo de cursos construido con Astro, enfocado en rendimiento y contenido estático.",
+      "code_url": "https://github.com/andleo17/catalogo-cursos",
+      "technologies": ["Astro", "Tailwind", "TypeScript"]
+    },
+    {
+      "name": "Bot de Discord",
+      "description": "Bot para gestionar las actividades de la escuela profesional en la universidad, con funcionalidades personalizadas.",
+      "code_url": "https://github.com/andleo17/sistemas-bot",
+      "technologies": ["TypeScript", "DiscordJS"]
+    },
+    {
       "name": "DotClass",
       "description": "Aplicación web que simula una plataforma de cursos virtuales.",
       "code_url": "https://github.com/andleo17/dotClass",
       "technologies": ["PHP", "PostgreSQL", "CSS", "JavaScript"]
-    },
-    {
-      "name": "GraphQL API de restaurante",
-      "description": "Desarrollé junto a mis compañeros de clase una Web API con GraphQL para un restaurante que contaba con las operaciones básicas de mantenimiento de un sistema (CRUD) y lógica propia del negocio.",
-      "code_url": "https://github.com/andleo17/sistema-mia-casa",
-      "technologies": ["NodeJS", "GraphQL", "PostresSQL", "Prisma"]
-    },
-    {
-      "name": "Gestor de notas académicas",
-      "description": "Aplicación web para gestionar las calificaciones académicas de un estudiante. Permite ingresar una estructura de calificaciones con sus respectivos pesos correspodiente al sílabo del curso y también calcula las calificaciones restantes en base a un resultado esperado.",
-      "code_url": "https://github.com/andleo17/notas-client",
-      "technologies": [
-        "React",
-        "NodeJS",
-        "Express",
-        "GraphQL",
-        "PostgreSQL",
-        "Docker",
-        "Tailwind"
-      ]
-    },
-    {
-      "name": "Gestor de asistencia",
-      "description": "Desarrollé junto a mis compañeros de clase una aplicación web para la gestión de asistencias de empleados en una empresa.",
-      "code_url": "https://github.com/andleo17/attendance-system-web",
-      "technologies": ["C#", "React", "CSS", "GraphQL", "SQL Server"]
-    },
-    {
-      "name": "Bot de Discord",
-      "description": "Desarrollé de un bot de Discord para gestionar actividades en la universidad. Además, contaba con funcionalidades personalizadas.",
-      "code_url": "https://github.com/andleo17/DiscordSistemasBot",
-      "technologies": ["TypeScript"]
     }
   ]
 }

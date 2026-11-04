@@ -1,5 +1,6 @@
 ---
 import data from '../../data.json';
+import type { Skill } from '../types';
 
 import Layout from '../layouts/default.astro';
 
@@ -8,100 +9,79 @@ import Education from '../components/curriculum/education.astro';
 import Course from '../components/curriculum/course.astro';
 import Sidebar from '../components/curriculum/sidebar.astro';
 import CurriculumSection from '../components/curriculum/section.astro';
+
+const skillGroups: { title: string; groups: Record<string, Skill[]> }[] = [
+  { title: 'Backend', groups: data.skills.backend },
+  { title: 'Frontend', groups: data.skills.frontend },
+  { title: 'Calidad', groups: data.skills.quality },
+  { title: 'Extras', groups: data.skills.others },
+];
 ---
 
-<Layout>
+<Layout
+  title={`Curriculum — ${data.information.short_name}`}
+  description={`${data.information.profession}. ${data.information.short_description}`}
+>
   <main
-    class='max-w-screen-xl mx-auto flex flex-col gap-4 p-4 lg:flex-row print:[print-color-adjust:exact] print:p-0 print:flex-row print:text-sm'
+    class='mx-auto flex max-w-6xl flex-col gap-6 px-4 py-6 lg:flex-row lg:gap-8 lg:px-8 lg:py-10 print:flex-row print:gap-0 print:p-0 print:text-sm print:[print-color-adjust:exact]'
   >
     <div
-      class='space-y-6 order-2 flex-grow lg:py-4 lg:order-first print:pr-4 print:pt-4 print:space-y-3'
+      class='order-2 min-w-0 flex-grow space-y-8 lg:order-first lg:py-2 print:order-first print:space-y-4 print:pr-4 print:pt-2'
     >
       <CurriculumSection title='Sobre mí'>
-        <p class='text-gray-600 dark:text-gray-400'>
+        <p class='leading-relaxed text-gray-600 dark:text-gray-300'>
           {data.information.description}
         </p>
       </CurriculumSection>
+
       <CurriculumSection title='Experiencia laboral'>
         <ol class='space-y-6 print:space-y-2'>
           {data.work_experience.map((we) => <WorkExperience data={we} />)}
         </ol>
       </CurriculumSection>
+
       <CurriculumSection title='Formación académica'>
-        <div class='space-y-3 print:space-y-1'>
+        <div class='space-y-4 print:space-y-1'>
           {data.education.map((e) => <Education education={e} />)}
         </div>
       </CurriculumSection>
+
       <CurriculumSection title='Cursos'>
-        <div class='space-y-3 print:space-y-1'>
+        <div class='space-y-4 print:space-y-1'>
           {data.courses.map((c) => <Course course={c} />)}
         </div>
       </CurriculumSection>
+
       <CurriculumSection title='Conocimientos'>
-        <div class='grid gap-2 md:grid-cols-3'>
-          <section>
-            <h3 class='font-bold text-lg text-center print:text-sm print:mb-0'>
-              Backend
-            </h3>
-            <div class='space-y-2 print:text-xs'>
-              {
-                Object.entries(data.skills['backend']).map(([k, v]) => (
-                  <article>
-                    <h4 class='font-bold'>{k}</h4>
-                    <p>
-                      {v
-                        .sort((s1, s2) => s2.level - s1.level)
-                        .map((s) => s.name)
-                        .join(', ')}
-                    </p>
-                  </article>
-                ))
-              }
-            </div>
-          </section>
-          <section>
-            <h3 class='font-bold text-lg text-center print:text-sm print:mb-0'>
-              Frontend
-            </h3>
-            <div class='space-y-2 print:text-xs'>
-              {
-                Object.entries(data.skills['frontend']).map(([k, v]) => (
-                  <article>
-                    <h4 class='font-bold'>{k}</h4>
-                    <p>
-                      {v
-                        .sort((s1, s2) => s2.level - s1.level)
-                        .map((s) => s.name)
-                        .join(', ')}
-                    </p>
-                  </article>
-                ))
-              }
-            </div>
-          </section>
-          <section>
-            <h3 class='font-bold text-lg text-center print:text-sm print:mb-0'>
-              Extras
-            </h3>
-            <div class='space-y-2 print:text-xs'>
-              {
-                Object.entries(data.skills['others']).map(([k, v]) => (
-                  <article>
-                    <h4 class='font-bold'>{k}</h4>
-                    <p>
-                      {v
-                        .sort((s1, s2) => s2.level - s1.level)
-                        .map((s) => s.name)
-                        .join(', ')}
-                    </p>
-                  </article>
-                ))
-              }
-            </div>
-          </section>
+        <div class='grid gap-6 sm:grid-cols-2'>
+          {
+            skillGroups.map((group) => (
+              <section class='min-w-0'>
+                <h3 class='mb-2 text-center text-sm font-semibold uppercase tracking-wide text-gray-600 dark:text-gray-300 print:mb-0 print:text-sm'>
+                  {group.title}
+                </h3>
+                <div class='space-y-2 text-sm print:text-xs'>
+                  {Object.entries(group.groups).map(([name, skills]) => (
+                    <article>
+                      <h4 class='font-semibold text-gray-800 dark:text-gray-200'>
+                        {name}
+                      </h4>
+                      <p class='text-gray-600 dark:text-gray-400'>
+                        {[...skills]
+                          .sort((s1, s2) => s2.level - s1.level)
+                          .map((s) => s.name)
+                          .join(', ')}
+                      </p>
+                    </article>
+                  ))}
+                </div>
+              </section>
+            ))
+          }
         </div>
       </CurriculumSection>
     </div>
+
     <Sidebar
       information={data.information}
       socials={data.socials}

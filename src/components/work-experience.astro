@@ -16,11 +16,14 @@ dayjs.locale('es-mx');
 const isCurrent = !data.end_date;
 ---
 
-<li class={showIcons ? 'ml-6' : ''}>
+<li class:list={['relative min-w-0', showIcons ? 'ml-6' : '']}>
   {
     showIcons && (
-      <span class='absolute flex items-center justify-center w-6 h-6 bg-blue-100 rounded-full -left-3 sm:mt-5 ring-8 ring-white dark:ring-gray-900 dark:bg-blue-900'>
-        <i class='[&>*]:w-4 [&>*]:h-4 [&>*]:fill-blue-800 [&>*]:dark:fill-blue-300'>
+      <span class='absolute -left-9 top-0 flex h-6 w-6 items-center justify-center rounded-full bg-blue-100 ring-8 ring-gray-50 dark:bg-blue-900 dark:ring-gray-950 print:hidden'>
+        <i
+          class='text-blue-800 dark:text-blue-300 [&>*]:h-4 [&>*]:w-4 [&>*]:fill-current'
+          aria-hidden='true'
+        >
           <Fragment
             set:html={import(`../assets/icons/${data.icon}.svg?raw`).then(
               (i) => i.default
@@ -30,43 +33,49 @@ const isCurrent = !data.end_date;
       </span>
     )
   }
+
   <div
-    class='flex gap-2 mb-1 text-sm font-normal leading-none text-gray-500 dark:text-gray-400 print:text-xs print:mb-0'
+    class='mb-1 flex flex-wrap gap-2 text-sm font-normal leading-none text-gray-500 dark:text-gray-400 print:mb-0 print:text-xs'
   >
     <time>{dayjs(data.start_date).format('MMMM, YYYY')}</time>
     {
       data.end_date && (
         <>
-          <span>-</span>
+          <span aria-hidden='true'>-</span>
           <time>{dayjs(data.end_date).format('MMMM, YYYY')}</time>
         </>
       )
     }
   </div>
+
   <h3
-    class='flex items-center mb-1 text-lg font-semibold text-gray-900 dark:text-white print:text-base print:mb-0'
+    class='mb-1 flex flex-wrap items-center gap-2 text-lg font-semibold text-gray-900 dark:text-white print:mb-0 print:text-base'
   >
-    {data.title}
+    <span class='break-words'>{data.title}</span>
     {
       isCurrent && (
-        <span class='bg-blue-100 text-blue-800 text-sm font-medium mr-2 px-2.5 py-0.5 rounded dark:bg-blue-900 dark:text-blue-300 ml-3'>
+        <span class='rounded bg-blue-100 px-2.5 py-0.5 text-sm font-medium text-blue-800 dark:bg-blue-900 dark:text-blue-300'>
           Actual
         </span>
       )
     }
   </h3>
+
   <div
-    class='flex sm:items-center text-sm font-normal leading-none flex-col sm:flex-row print:text-xs'
+    class='flex flex-col text-sm font-normal leading-snug sm:flex-row sm:items-center print:text-xs'
   >
-    <span>{data.institution}</span>
+    <span class='font-medium text-gray-700 dark:text-gray-300'
+      >{data.institution}</span
+    >
     <span
-      class='sm:ml-2 sm:pl-2 sm:border-l border-l-gray-600 dark:border-l-white'
+      class='text-gray-500 sm:ml-2 sm:border-l sm:border-l-gray-400 sm:pl-2 dark:border-l-gray-600 dark:text-gray-400'
       >{data.city}, {data.country}</span
     >
   </div>
+
   <ul
-    class='mt-4 font-normal space-y-1 text-gray-600 list-disc list-inside dark:text-gray-400 print:text-sm print:mt-2 print:space-y-0'
+    class='mt-4 list-disc space-y-1 pl-5 text-sm font-normal text-gray-600 marker:text-gray-400 dark:text-gray-300 print:mt-2 print:space-y-0 print:text-sm'
   >
-    {data.goals.map((g) => <li>{g}</li>)}
+    {data.goals.map((goal) => <li class='break-words'>{goal}</li>)}
   </ul>
 </li>

@@ -7,66 +7,93 @@ import { readdir } from 'node:fs/promises';
 import { join } from 'node:path';
 
 interface Props {
-	data: Project;
+  data: Project;
 }
 
 const { data } = Astro.props;
 let thumbnails: string[] = [];
+
 if (data.thumbnails) {
-	const thumbnailsFolder = join('public/images/thumbnails', data.thumbnails);
-	const files = await readdir(thumbnailsFolder);
-	thumbnails = files.map(
-		(f: string) => `/images/thumbnails/${data.thumbnails}/${f}`
-	);
+  try {
+    const thumbnailsFolder = join('public/images/thumbnails', data.thumbnails);
+    const files = await readdir(thumbnailsFolder);
+    thumbnails = files.map(
+      (file: string) => `/images/thumbnails/${data.thumbnails}/${file}`
+    );
+  } catch {
+    thumbnails = [];
+  }
 }
 ---
 
-<div
-	class='bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700'
+<article
+  class='group flex h-full min-w-0 flex-col overflow-hidden rounded-xl border border-gray-200 bg-white shadow-sm transition duration-200 hover:-translate-y-1 hover:border-blue-300 hover:shadow-lg focus-within:border-blue-400 focus-within:ring-2 focus-within:ring-blue-200 dark:border-gray-800 dark:bg-gray-900 dark:hover:border-blue-700 dark:focus-within:border-blue-600 dark:focus-within:ring-blue-900'
 >
-	<div>
-		{
-			thumbnails.map((t: string) => (
-				<img
-					src={t}
-					alt={data.name + '-thumbnail'}
-					class='rounded-t-lg object-cover'
-				/>
-			))
-		}
-	</div>
-	<div class='flex flex-col p-5 h-full'>
-		<h5
-			class='mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white'
-		>
-			{data.name}
-		</h5>
-		<p class='flex-grow mb-3 font-normal text-gray-700 dark:text-gray-400'>
-			{data.description}
-		</p>
-		<div class='flex items-center gap-2' role='group'>
-			{
-				data.code_url && (
-					<a
-						href={data.code_url}
-						class='w-full inline-flex items-center gap-2 justify-center hover:text-white border border-green-700 hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:border-green-500 dark:hover:bg-green-600 dark:focus:ring-green-800 [&>*]:w-5 [&>*]:h-5 [&>*]:fill-black [&>*]:hover:fill-white [&>*]:dark:fill-white'
-					>
-						<Fragment set:html={github} />
-						Código
-					</a>
-				)
-			}
-			{
-				data.url && (
-					<a
-						href={data.url}
-						class='w-full inline-flex items-center gap-2 justify-center py-2.5 px-5 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700 [&>*]:w-5 [&>*]:h-5 [&>*]:fill-gray-900 dark:[&>*]:fill-gray-400'
-					>
-						<Fragment set:html={url} />
-						Visitar
-					</a>
-				)
-			}
-		</div>
-	</div>
-</div>
+  {
+    thumbnails.map((thumbnail: string) => (
+      <img
+        src={thumbnail}
+        alt={`Miniatura del proyecto ${data.name}`}
+        class='h-44 w-full object-cover'
+        loading='lazy'
+        decoding='async'
+      />
+    ))
+  }
+
+  <div class='flex flex-1 flex-col p-5'>
+    <h3
+      class='break-words text-xl font-bold tracking-tight text-gray-900 dark:text-white'
+    >
+      {data.name}
+    </h3>
+
+    <p class='mt-2 flex-1 text-sm leading-relaxed text-gray-600 dark:text-gray-300'>
+      {data.description}
+    </p>
+
+    <ul
+      class='mt-4 flex flex-wrap gap-1.5'
+      aria-label={`Tecnologías de ${data.name}`}
+    >
+      {
+        data.technologies.map((technology) => (
+          <li class='rounded-full bg-blue-50 px-2.5 py-0.5 text-xs font-medium text-blue-800 ring-1 ring-inset ring-blue-200 dark:bg-blue-950/60 dark:text-blue-200 dark:ring-blue-900'>
+            {technology}
+          </li>
+        ))
+      }
+    </ul>
+
+    <div class='mt-5 flex flex-wrap gap-2'>
+      {
+        data.code_url && (
+          <a
+            href={data.code_url}
+            aria-label={`Ver el código de ${data.name} en GitHub`}
+            class='inline-flex flex-1 items-center justify-center gap-2 rounded-lg bg-gray-900 px-4 py-2.5 text-sm font-semibold text-white transition hover:bg-gray-700 focus:ring-4 focus:ring-gray-300 dark:bg-white dark:text-gray-900 dark:hover:bg-gray-200 dark:focus:ring-gray-700 [&_svg]:h-4 [&_svg]:w-4 [&_svg]:fill-current'
+            target='_blank'
+            rel='noopener noreferrer'
+          >
+            <Fragment set:html={github} />
+            Código
+          </a>
+        )
+      }
+      {
+        data.url && (
+          <a
+            href={data.url}
+            aria-label={`Visitar ${data.name}`}
+            class='inline-flex flex-1 items-center justify-center gap-2 rounded-lg border border-gray-300 bg-white px-4 py-2.5 text-sm font-semibold text-gray-800 transition hover:border-blue-300 hover:bg-blue-50 hover:text-blue-700 focus:ring-4 focus:ring-blue-200 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-200 dark:hover:border-blue-700 dark:hover:bg-blue-950 dark:hover:text-blue-300 dark:focus:ring-blue-900 [&_svg]:h-4 [&_svg]:w-4 [&_svg]:fill-current'
+            target='_blank'
+            rel='noopener noreferrer'
+          >
+            <Fragment set:html={url} />
+            Visitar
+          </a>
+        )
+      }
+    </div>
+  </div>
+</article>

@@ -1,7 +1,8 @@
 ---
 import type { Education } from '../../types';
+
 import dayjs from 'dayjs';
-import 'dayjs/locale/es-mx';
+import 'dayjs/locale/es';
 
 interface Props {
   education: Education;
@@ -9,48 +10,33 @@ interface Props {
 
 const { education } = Astro.props;
 
-dayjs.locale('es-mx');
+dayjs.locale('es');
 
-const isCurrent = !education.end_date;
+const startDate = dayjs(education.start_date).format('MMM YYYY');
+const endDate = education.end_date
+  ? dayjs(education.end_date).format('MMM YYYY')
+  : 'presente';
+const dateRange = `${startDate} – ${endDate}`;
 ---
 
-<div class='flex flex-col'>
-  <div
-    class='mb-1 flex flex-wrap gap-2 text-sm font-normal leading-none text-gray-500 dark:text-gray-400 print:mb-0 print:text-xs'
-  >
-    <time>{dayjs(education.start_date).format('MMMM, YYYY')}</time>
-    {
-      education.end_date && (
-        <>
-          <span aria-hidden='true'>-</span>
-          <time>{dayjs(education.end_date).format('MMMM, YYYY')}</time>
-        </>
-      )
-    }
+<div class='break-inside-avoid'>
+  <div class='flex items-baseline justify-between gap-3'>
+    <h3
+      class='font-semibold text-gray-900 dark:text-white print:text-black'
+    >
+      {education.institution}
+    </h3>
+    <time
+      class='shrink-0 whitespace-nowrap text-sm text-gray-500 dark:text-gray-400 print:text-[10.5pt] print:text-black'
+    >
+      {dateRange}
+    </time>
   </div>
 
-  <h3
-    class='mb-1 flex flex-wrap items-center gap-2 text-lg font-semibold text-gray-900 dark:text-white print:mb-0 print:text-sm'
-  >
-    <span class='break-words'>{education.goal}</span>
-    {
-      isCurrent && (
-        <span class='rounded bg-blue-100 px-2.5 py-0.5 text-sm font-medium text-blue-800 dark:bg-blue-900 dark:text-blue-300'>
-          Actual
-        </span>
-      )
-    }
-  </h3>
-
-  <div
-    class='flex flex-col text-sm font-normal leading-snug sm:flex-row sm:items-center print:text-xs'
-  >
-    <span class='font-medium text-gray-700 dark:text-gray-300'
-      >{education.institution}</span
-    >
-    <span
-      class='text-gray-500 sm:ml-2 sm:border-l sm:border-l-gray-400 sm:pl-2 dark:border-l-gray-600 dark:text-gray-400'
-      >{education.city}, {education.country}</span
-    >
-  </div>
+  <p class='text-sm text-gray-700 dark:text-gray-300 print:text-black'>
+    {education.goal}
+  </p>
+  <p class='text-sm text-gray-500 dark:text-gray-400 print:text-black'>
+    {education.city}, {education.country}
+  </p>
 </div>

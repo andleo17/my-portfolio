@@ -1,7 +1,7 @@
 ---
 import type { Course } from '../../types';
+
 import dayjs from 'dayjs';
-import 'dayjs/locale/es-mx';
 
 interface Props {
   course: Course;
@@ -9,55 +9,28 @@ interface Props {
 
 const { course } = Astro.props;
 
-dayjs.locale('es-mx');
-
-const isCurrent = !course.end_date;
 const certificationUrl = course.certification_url;
+const year = dayjs(course.end_date ?? course.start_date).format('YYYY');
 ---
 
-<div class='flex flex-col'>
-  <div
-    class='mb-1 flex gap-2 text-sm font-normal leading-none text-gray-500 dark:text-gray-400 print:mb-0 print:text-xs'
-  >
-    <time>{dayjs(course.start_date).format('MMMM, YYYY')}</time>
-    {
-      course.end_date && (
-        <>
-          <span>-</span>
-          <time>{dayjs(course.end_date).format('MMMM, YYYY')}</time>
-        </>
-      )
-    }
-  </div>
-
-  <h3
-    class='mb-1 flex flex-wrap items-center gap-2 text-lg font-semibold text-gray-900 dark:text-white print:mb-0 print:text-base'
-  >
-    {
-      certificationUrl ? (
-        <a
-          href={certificationUrl}
-          class='underline decoration-gray-400 underline-offset-2 transition hover:text-blue-700 hover:decoration-blue-600 dark:hover:text-blue-400 dark:hover:decoration-blue-400'
-          target='_blank'
-          rel='noopener noreferrer'
-          aria-label={`Ver el certificado de ${course.name}`}
-        >
-          {course.name}
-        </a>
-      ) : (
-        <span>{course.name}</span>
-      )
-    }
-    {
-      isCurrent && (
-        <span class='rounded bg-blue-100 px-2.5 py-0.5 text-sm font-medium text-blue-800 dark:bg-blue-900 dark:text-blue-300'>
-          Actual
-        </span>
-      )
-    }
-  </h3>
-
-  <p class='text-sm text-gray-600 dark:text-gray-400 print:text-xs'>
-    {course.institution}
-  </p>
-</div>
+<li
+  class='break-inside-avoid text-sm text-gray-600 dark:text-gray-400 print:text-[10.5pt] print:text-black'
+>
+  {
+    certificationUrl ? (
+      <a
+        href={certificationUrl}
+        target='_blank'
+        rel='noopener noreferrer'
+        class='font-medium text-gray-900 underline decoration-gray-400 underline-offset-2 transition hover:text-blue-700 hover:decoration-blue-600 dark:text-gray-100 dark:hover:text-blue-400 dark:hover:decoration-blue-400 print:text-black print:no-underline'
+      >
+        {course.name}
+      </a>
+    ) : (
+      <span class='font-medium text-gray-900 dark:text-gray-100 print:text-black'>
+        {course.name}
+      </span>
+    )
+  }
+  <span> — {course.institution}, {year}</span>
+</li>

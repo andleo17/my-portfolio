@@ -1,0 +1,45 @@
+---
+import type { WorkExperience } from '../../types';
+
+import dayjs from 'dayjs';
+import 'dayjs/locale/es';
+
+interface Props {
+  data: WorkExperience;
+}
+
+const { data } = Astro.props;
+
+dayjs.locale('es');
+
+const startDate = dayjs(data.start_date).format('MMM YYYY');
+const endDate = data.end_date
+  ? dayjs(data.end_date).format('MMM YYYY')
+  : 'presente';
+const dateRange = `${startDate} – ${endDate}`;
+---
+
+<li class='break-inside-avoid'>
+  <div class='flex items-baseline justify-between gap-3'>
+    <h3
+      class='font-semibold text-gray-900 dark:text-white print:text-black'
+    >
+      {data.title}
+    </h3>
+    <time
+      class='shrink-0 whitespace-nowrap text-sm text-gray-500 dark:text-gray-400 print:text-[10.5pt] print:text-black'
+    >
+      {dateRange}
+    </time>
+  </div>
+
+  <p class='text-sm text-gray-600 dark:text-gray-400 print:text-black'>
+    {data.institution} · {data.city}
+  </p>
+
+  <ul
+    class='mt-2 list-disc space-y-1 pl-5 text-sm text-gray-600 marker:text-gray-400 dark:text-gray-300 print:mt-1 print:space-y-0.5 print:text-[10.5pt] print:text-black print:marker:text-black'
+  >
+    {data.goals.map((goal) => <li class='break-words'>{goal}</li>)}
+  </ul>
+</li>

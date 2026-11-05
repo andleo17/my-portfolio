@@ -3,7 +3,7 @@ import tailwindcss from '@tailwindcss/vite';
 
 // https://astro.build/config
 export default defineConfig({
-  site: 'https://andleo.dev',
+  site: process.env.SITE_URL || 'http://localhost:4321',
   vite: {
     plugins: [tailwindcss()],
   },

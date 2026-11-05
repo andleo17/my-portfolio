@@ -8,6 +8,8 @@ RUN npm install --no-audit --no-fund
 
 # código + build
 COPY . .
+ARG SITE_URL
+ENV SITE_URL=$SITE_URL
 RUN npm run build
 
 # imagen final mínima

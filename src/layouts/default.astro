@@ -17,11 +17,14 @@ const {
   jsonLd,
 } = Astro.props;
 
-const siteUrl = 'https://andleo.dev';
+const siteUrl = (process.env.SITE_URL || 'http://localhost:4321').replace(
+  /\/+$/,
+  '',
+);
 const canonicalUrl = `${siteUrl}${
   Astro.url.pathname === '/' ? '' : Astro.url.pathname
 }`;
-const imageUrl = new URL(image, siteUrl);
+const imageUrl = new URL(image, `${siteUrl}/`);
 ---
 
 <html lang='es' class='scroll-smooth'>

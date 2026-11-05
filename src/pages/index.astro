@@ -9,6 +9,10 @@ import SkillGroup from '../components/skill-group.astro';
 import Project from '../components/project.astro';
 import WorkExperience from '../components/work-experience.astro';
 
+const siteUrl = (process.env.SITE_URL || 'http://localhost:4321').replace(
+  /\/+$/,
+  '',
+);
 const currentJob = data.work_experience.find((job) => !job.end_date);
 
 const sameAs = data.socials
@@ -20,8 +24,8 @@ const personSchema = {
   '@type': 'Person',
   name: data.information.full_name,
   jobTitle: currentJob?.title ?? data.information.profession,
-  url: 'https://andleo.dev',
-  image: 'https://andleo.dev/images/profile.jpg',
+  url: siteUrl,
+  image: `${siteUrl}/images/profile.jpg`,
   email: `mailto:${data.information.email}`,
   sameAs,
   alumniOf: {
